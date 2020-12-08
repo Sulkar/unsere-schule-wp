@@ -43,6 +43,11 @@ p {
     CONTENT STYLE
 ----------------------------------------------------- */
 
+/* overrides wp set margins*/
+.post, .page {
+    margin: 0;
+}
+
 #content {
     width: 100%;
     padding: 20px;

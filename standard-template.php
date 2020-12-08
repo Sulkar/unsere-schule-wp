@@ -56,8 +56,6 @@
 
 </div>
 
-</div>
-<?php get_footer(); ?>
+</div> <!-- wrapper -->
 
-
-
+<?php get_footer('simple'); ?>
