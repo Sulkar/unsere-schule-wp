@@ -1,0 +1,74 @@
+
+#sidebar-header{
+    text-align: center;
+    background-color: tomato;
+}
+/* */
+#btn-sidebar-collapse{
+    font-size: 2em;
+    color: tomato;
+    margin-top: -10px;
+    cursor: pointer;
+}
+
+div[class="meinContainer"] a {
+    color: white;
+}
+div[class="meinContainer"] ul {
+    margin-left: 0;
+    padding-left: 0;
+    list-style: none;
+}
+div[class="meinContainer"] ul ul {
+    margin-left: 10px;
+    border-left: 2px solid rgb(255, 255, 255);
+}
+/* */
+div[class="meinContainer"] ul a {
+    display: inline-block;
+    width: 100%;
+    font-size: 1.05em;
+    padding: 8px 8px 8px 13px;
+    text-decoration: none;
+}
+/* hide all submenu */
+div[class="meinContainer"] .children, div[class ="meinContainer"] .sub-menu {
+    overflow: hidden;
+    display: none;
+}
+
+div[class="meinContainer"] ul li .expandable {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: stretch;
+    position: relative;
+}
+
+/* submenu expand arrow icon*/
+div[class="meinContainer"] .navSub {
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+    padding: 4px 8px;
+    display: inline-block;
+    font-size: 20px;
+    width: 40px;
+    height: 100%;
+    color: white;
+    background-color: #38424D;
+    border: 0;
+    border-left: 1px solid rgb(255, 255, 255);
+    border-radius: 0;
+    box-shadow: none;
+    -webkit-appearance: none;
+}
+/* hover */
+div[class="meinContainer"] ul li .navSub:hover,
+div[class="meinContainer"] ul li .navSub:focus {
+    color: #38424D;
+  background-color: white;
+}
+div[class="meinContainer"] a:hover {
+    color: #38424D;
+    background-color: white;
+}
