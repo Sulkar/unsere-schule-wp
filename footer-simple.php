@@ -1,6 +1,6 @@
 <?php
 /**
- * The template for displaying the footer
+ * Custom unsere-schule.org template
  *
  * Contains the closing of the #content div and all content after.
  *
@@ -11,6 +11,7 @@
 
 ?>
 
+    </div> <!-- wrapper -->
 </div><!-- #page -->
 
 <?php wp_footer(); ?>

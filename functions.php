@@ -238,12 +238,8 @@ if ( defined( 'JETPACK__VERSION' ) ) {
 /**
  * Register Custom Navigation Walker
  */
-function register_navwalker1(){
-	require_once get_template_directory() . '/navwalkers/class-wp-bootstrap-navwalker.php';
+function register_navwalker(){
+	require_once get_template_directory() . '/navwalkers/UsSidebarNavwalker.php';
 }
-//add_action( 'after_setup_theme', 'register_navwalker1' );
+add_action( 'after_setup_theme', 'register_navwalker' );
 
-function register_navwalker2(){
-	require_once get_template_directory() . '/navwalkers/unsere-schule-navwalker.php';
-}
-add_action( 'after_setup_theme', 'register_navwalker2' );
