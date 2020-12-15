@@ -14,7 +14,10 @@
 <!-- Sidebar -->
 <nav id="sidebar">
 	<div id="sidebar-header">
-		<h3>unsere-schule.org</h3>
+		<a href="<?php echo home_url(); ?>">
+			<div id="sidebar-header-logo"></div>
+			<h4>unsere-schule.org</h4>
+		</a>
 	</div>
 	<!-- custom navmenu -->
 	<?php

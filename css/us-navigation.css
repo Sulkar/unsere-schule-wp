@@ -1,22 +1,25 @@
 /* menu Arrows for submenu */
-/*.menu-item-has-children a::after{
-    display: inline-block;
-    content: " ";
-    background-image: url('data:image/svg+xml, <svg  viewBox="0 0 16 16" fill="%23ffffff" xmlns="http://www.w3.org/2000/svg"><path d="M12.14 8.753l-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/></svg>');
-    background-repeat: no-repeat;
-    background-size: 1em 1em;
-    width: 1em;
-    height: 1em;
-    cursor: pointer;
-    pointer-events: all;
-}*/
 
-
+/* sidebar header */
 #sidebar-header{
     text-align: center;
     background-color: tomato;
+    padding-bottom: 3px;
 }
-/* */
+#sidebar-header h4{
+    color: #F7F7EF;
+}
+#sidebar-header a{
+    text-decoration: none;
+}
+#sidebar-header-logo{
+    background-image: url(../images/school-logo.svg);
+    background-repeat: no-repeat;
+    background-position: center 5px;
+    background-size: 30%;
+    height: 65px;
+}
+/* hamburger button */
 #btn-sidebar-collapse{
     font-size: 2em;
     color: tomato;
@@ -25,7 +28,7 @@
 }
 
 div[class="meinContainer"] a {
-    color: white;
+    color: #F7F7EF;
 }
 div[class="meinContainer"] ul {
     margin-left: 0;
@@ -34,7 +37,7 @@ div[class="meinContainer"] ul {
 }
 div[class="meinContainer"] ul ul {
     margin-left: 10px;
-    border-left: 2px solid rgb(255, 255, 255);
+    /*border-left: 2px solid rgb(255, 255, 255);*/
 }
 /* */
 div[class="meinContainer"] ul a {
@@ -46,9 +49,14 @@ div[class="meinContainer"] ul a {
     text-decoration: none;
 }
 /* hide all submenu */
-div[class="meinContainer"] .children, div[class ="meinContainer"] .sub-menu {
+div[class="meinContainer"] .children,
+div[class ="meinContainer"] .sub-menu {
     overflow: hidden;
     display: none;
+    background-color: #2D353E;
+}
+div[class ="meinContainer"] .sub-menu .navSub{
+    background-color: #2D353E;
 }
 
 div[class="meinContainer"] ul li .expandable {
@@ -68,21 +76,28 @@ div[class="meinContainer"] .navSub {
     font-size: 20px;
     width: 40px;
     height: 100%;
-    color: white;
+    color: #F7F7EF;
     background-color: #38424D;
     border: 0;
-    border-left: 1px solid rgb(255, 255, 255);
+    /*border-left: 1px solid rgb(255, 255, 255);*/
     border-radius: 0;
     box-shadow: none;
     -webkit-appearance: none;
 }
-/* hover */
+
+/* events */
+div[class="meinContainer"] a[aria-current="page"] {
+    color: #FF997F;
+    display: flex;
+}
 div[class="meinContainer"] ul li .navSub:hover,
 div[class="meinContainer"] ul li .navSub:focus {
-    color: #38424D;
-  background-color: white;
+    color: #FF997F;
+    /*color: #38424D;
+    background-color: #FF997F;*/
 }
 div[class="meinContainer"] a:hover {
-    color: #38424D;
-    background-color: white;
+    color: #FF997F;
+    /*color: #38424D;
+    background-color: #FF997F;*/
 }

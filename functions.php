@@ -54,17 +54,7 @@ if ( ! function_exists( 'unsere_schule_setup' ) ) :
 			)
 		);
 
-		function register_my_menus() {
-			register_nav_menus(
-			  array(
-				'header-menu' => __( 'Header Menu' ),
-				'extra-menu' => __( 'Extra Menu' )
-			   )
-			 );
-		   }
-		   add_action( 'init', 'register_my_menus' );
-
-		
+				
 		/*
 		 * Switch default core markup for search form, comment form, and comments
 		 * to output valid HTML5.
@@ -228,12 +218,6 @@ require get_template_directory() . '/inc/template-functions.php';
  */
 require get_template_directory() . '/inc/customizer.php';
 
-/**
- * Load Jetpack compatibility file.
- */
-if ( defined( 'JETPACK__VERSION' ) ) {
-	require get_template_directory() . '/inc/jetpack.php';
-}
 
 /**
  * Register Custom Navigation Walker
