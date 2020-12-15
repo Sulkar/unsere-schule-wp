@@ -5,7 +5,7 @@
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 body {
     /*font-family: 'Poppins', sans-serif;*/
-    background: #F7F7EF;
+    background: white;
 }
 
 p {
@@ -29,8 +29,8 @@ p {
 #sidebar {
     min-width: 250px;
     max-width: 250px;
-    background: #38424D;
-    color: #fff;
+    background: #F7F7EF;;
+    color: #21759b;
     transition: all 0.3s;
 }
 #btn-sidebar-collapse {

@@ -33,7 +33,7 @@ class usSidebarNavwalker extends Walker {
         $myNavIcon = '<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-right-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12.14 8.753l-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/></svg>';
         
         $output .= "{$n}{$indent}";
-        $output .= "<span class='navSub arrowRight'>$myNavIcon</span></div>"; // adds expand arrow and closes expandable div
+        $output .= "<div class='navSub'>$myNavIcon</div></div>"; // adds expand arrow and closes expandable div
         $output .= "<ul$class_names>{$n}";
     }
      
@@ -100,7 +100,7 @@ class usSidebarNavwalker extends Walker {
         $title = apply_filters( 'nav_menu_item_title', $title, $item, $args, $depth );
     
         $item_output  = $args->before;
-        $item_output .= '<div class="expandable">'; // add expandable div
+        $item_output .= '<div class="expandable">';// add expandable div
         $item_output .= '<a' . $attributes . '>';
         $item_output .= $args->link_before . $title . $args->link_after;
         $item_output .= '</a>';
