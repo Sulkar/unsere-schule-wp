@@ -1,38 +1,125 @@
 <?php
 
-/* custom unsere-schule.org navwalker for sidebar navigation
-******************************************/
+/**
+ * custom unsere-schule.org navwalker for sidebar navigation
+ * original walker file: https://developer.wordpress.org/reference/classes/walker_nav_menu/
+ */
 
-class usSidebarNavwalker extends Walker_Nav_Menu {
+class usSidebarNavwalker extends Walker {
 
-    /*function start_lvl( &$output, $depth = 0, $args = array() ) {
-        $myNavIcon = '<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-right-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12.14 8.753l-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/></svg>';
+    public $tree_type = array( 'post_type', 'taxonomy', 'custom' );
+     
+    public $db_fields = array(
+        'parent' => 'menu_item_parent',
+        'id'     => 'db_id',
+    );
 
-        $indent = str_repeat("\t", $depth);
-        $output .= "\n$indent<div class='expandable'>
-            <span class='navSub arrowRight'>$myNavIcon</span>
-            </div>
-            <ul class='sub-menu'>\n";
-    }*/
-
-    function start_lvl( &$output, $depth = 0, $args = array() ) {
-        $myNavIcon = '<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-right-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12.14 8.753l-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/></svg>';
-        $indent = str_repeat("\t", $depth);
-        $output .= "\n$indent
-            <ul class='sub-menu'>\n";
-    }
+    //
+    public function start_lvl( &$output, $depth = 0, $args = null ) {
+        if ( isset( $args->item_spacing ) && 'discard' === $args->item_spacing ) {
+            $t = '';
+            $n = '';
+        } else {
+            $t = "\t";
+            $n = "\n";
+        }
+        $indent = str_repeat( $t, $depth );
     
-    function end_lvl( &$output, $depth = 0, $args = array() ) {
-        $indent = str_repeat("\t", $depth);
-        $output .= "$indent</ul>\n";
+        $classes = array( 'sub-menu' );
+
+        $class_names = implode( ' ', apply_filters( 'nav_menu_submenu_css_class', $classes, $args, $depth ) );
+        $class_names = $class_names ? ' class="' . esc_attr( $class_names ) . '"' : '';
+    
+        $myNavIcon = '<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-caret-right-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12.14 8.753l-5.482 4.796c-.646.566-1.658.106-1.658-.753V3.204a1 1 0 0 1 1.659-.753l5.48 4.796a1 1 0 0 1 0 1.506z"/></svg>';
+        
+        $output .= "{$n}{$indent}";
+        $output .= "<span class='navSub arrowRight'>$myNavIcon</span></div>"; // adds expand arrow and closes expandable div
+        $output .= "<ul$class_names>{$n}";
+    }
+     
+    //
+    public function end_lvl( &$output, $depth = 0, $args = null ) {
+        if ( isset( $args->item_spacing ) && 'discard' === $args->item_spacing ) {
+            $t = '';
+            $n = '';
+        } else {
+            $t = "\t";
+            $n = "\n";
+        }
+        $indent  = str_repeat( $t, $depth );
+        $output .= "$indent</ul>{$n}";
+    }
+     
+    //
+    public function start_el( &$output, $item, $depth = 0, $args = null, $id = 0 ) {
+        if ( isset( $args->item_spacing ) && 'discard' === $args->item_spacing ) {
+            $t = '';
+            $n = '';
+        } else {
+            $t = "\t";
+            $n = "\n";
+        }
+        $indent = ( $depth ) ? str_repeat( $t, $depth ) : '';
+    
+        $classes   = empty( $item->classes ) ? array() : (array) $item->classes;
+        $classes[] = 'menu-item-' . $item->ID;
+
+        $args = apply_filters( 'nav_menu_item_args', $args, $item, $depth );
+    
+        $class_names = implode( ' ', apply_filters( 'nav_menu_css_class', array_filter( $classes ), $item, $args, $depth ) );
+        $class_names = $class_names ? ' class="' . esc_attr( $class_names ) . '"' : '';
+    
+        $id = apply_filters( 'nav_menu_item_id', 'menu-item-' . $item->ID, $item, $args, $depth );
+        $id = $id ? ' id="' . esc_attr( $id ) . '"' : '';
+    
+        $output .= $indent . '<li' . $id . $class_names . '>';
+    
+        $atts           = array();
+        $atts['title']  = ! empty( $item->attr_title ) ? $item->attr_title : '';
+        $atts['target'] = ! empty( $item->target ) ? $item->target : '';
+        if ( '_blank' === $item->target && empty( $item->xfn ) ) {
+            $atts['rel'] = 'noopener';
+        } else {
+            $atts['rel'] = $item->xfn;
+        }
+        $atts['href']         = ! empty( $item->url ) ? $item->url : '';
+        $atts['aria-current'] = $item->current ? 'page' : '';
+    
+        $atts = apply_filters( 'nav_menu_link_attributes', $atts, $item, $args, $depth );
+    
+        $attributes = '';
+        foreach ( $atts as $attr => $value ) {
+            if ( is_scalar( $value ) && '' !== $value && false !== $value ) {
+                $value       = ( 'href' === $attr ) ? esc_url( $value ) : esc_attr( $value );
+                $attributes .= ' ' . $attr . '="' . $value . '"';
+            }
+        }
+    
+        $title = apply_filters( 'the_title', $item->title, $item->ID );
+    
+        $title = apply_filters( 'nav_menu_item_title', $title, $item, $args, $depth );
+    
+        $item_output  = $args->before;
+        $item_output .= '<div class="expandable">'; // add expandable div
+        $item_output .= '<a' . $attributes . '>';
+        $item_output .= $args->link_before . $title . $args->link_after;
+        $item_output .= '</a>';
+        $item_output .= $args->after;
+    
+        
+        $output .= apply_filters( 'walker_nav_menu_start_el', $item_output, $item, $depth, $args );
     }
 
-    /*
-    function end_lvl( &$output, $depth = 0, $args = array() ) {
-        $indent = str_repeat("\t", $depth);
-        $output .= "$indent</ul></div>\n";
-    }*/
-
+    public function end_el( &$output, $item, $depth = 0, $args = null ) {
+        if ( isset( $args->item_spacing ) && 'discard' === $args->item_spacing ) {
+            $t = '';
+            $n = '';
+        } else {
+            $t = "\t";
+            $n = "\n";
+        }
+        $output .= "</li>{$n}";
+    }
 }
 
 ?>

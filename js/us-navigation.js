@@ -25,7 +25,6 @@ jQuery( document ).ready(function() {
                 jQuery(this).addClass('arrowRight');
             }
     });
-
     
     jQuery('#btn-sidebar-collapse').on('click', function () {
         jQuery('#sidebar').toggleClass('active');
