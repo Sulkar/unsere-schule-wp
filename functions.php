@@ -227,3 +227,16 @@ function register_navwalker(){
 }
 add_action( 'after_setup_theme', 'register_navwalker' );
 
+
+
+function move_admin_bar() {
+	echo '
+	<style type="text/css">
+	body {margin-top: -28px;padding-bottom: 28px;}
+	body.admin-bar #wphead {padding-top: 0;}
+	body.admin-bar #footer {padding-bottom: 28px;}
+	#wpadminbar { top: auto !important;bottom: 0;}
+	#wpadminbar .quicklinks .menupop ul { bottom: 28px;}
+	</style>';
+	}
+	add_action( 'wp_head', 'move_admin_bar' );

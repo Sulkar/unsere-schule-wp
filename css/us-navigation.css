@@ -1,29 +1,59 @@
-/* menu Arrows for submenu */
 
-/* search box */
-/* remove inputfield arrows */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
+/* ---------------------------------------------------
+    header navigation
+----------------------------------------------------- */
+#header-nav{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 3rem;
+    width: 100%;
+    background-color:#31ADC0;
+}
+.navbar-logo{
+    display: block;
+    width: 2rem;
+    height: 2rem;
+}
+.sidebar-button{ /* uschule logo */
+    cursor: pointer;
+    display: block;
+    position: absolute;
+    top: 0.5rem;
+    
+}
+.site-name{
+    display: inline-block;
+    margin-left: 2.5rem;
+    color: #F7F7EF;
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+
+/* ---------------------------------------------------
+    search box
+----------------------------------------------------- */
+.searchbox {
+    border: 0px;
+    position: relative;
+    border-radius: 4px;
+}
+.searchbox input::-webkit-outer-spin-button,
+.searchbox input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-input[type=number] {
+.searchbox input[type="number"] {
   -moz-appearance: textfield;
 }
 .searchbox > input[type="number"]:focus{
     color: #fff;
     outline: none;
 }
-.searchbox {
-    border: 0px;
-    margin: 10px auto;
-    position: relative;
-    border-radius: 4px;
-}
 .searchbox input {
     display: inline-block;
     color: #fff;
-    width: 80%;
+    width: 130px;
     height: 30px;
     background: #5CB85C;
     border: 0;
@@ -31,93 +61,64 @@ input[type=number] {
     margin: 0;
     font-weight: 400;
 }
-.searchbox input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+.searchbox input::placeholder {
     color: #fff;
 }
 .searchbox span {
     color: rgba(255, 255, 255, 0.6);
     position: absolute;
     padding: 0rem 1rem;
-    right: 20px;
-    
+    right: 0;
     cursor: pointer;
 }
 
-#sidebar-body{
-    /*padding: 0.5rem;*/
-}
-/* sidebar header */
-#sidebar-header{
-    text-align: center;
-    background-color: #31ADC0;
-    padding-bottom: 3px;
-}
-#sidebar-header h4{
-    color: #F7F7EF;
-}
-#sidebar-header a{
-    text-decoration: none;
-}
-#sidebar-header-logo{
-    background-image: url(../images/school-logo.svg);
-    background-repeat: no-repeat;
-    background-position: center 5px;
-    background-size: 30%;
-    height: 65px;
-}
 /* hamburger button */
 #btn-sidebar-collapse{
-    font-size: 2em;
+    font-size: 2rem;
     color: tomato;
     margin-top: -10px;
     cursor: pointer;
 }
 
+/* ---------------------------------------------------
+    sidebar navigation
+----------------------------------------------------- */
 div[class="meinContainer"] a {
     color: #21759b;
-    border-radius: .25rem;
+    
 }
 div[class="meinContainer"] ul {
     margin-left: 0;
     padding-left: 0;
     list-style: none;
 }
-div[class="meinContainer"] ul ul {
-    margin-left: 10px;
-    /*border-left: 2px solid rgb(255, 255, 255);*/
-}
-/* */
 div[class="meinContainer"] ul a {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    font-size: 1.05em;
+    font-size: 1.05rem;
     padding: 8px 8px 8px 13px;
     text-decoration: none;
 }
-
+div[class="meinContainer"] ul ul {
+    margin-left: 10px;
+    /*border-left: 2px solid rgb(255, 255, 255);*/
+}
 div[class="meinContainer"] ul li.menu-item-has-children > div.expandable > a{
     margin-right: 40px;
 }
-
 /* hide all submenu */
 div[class="meinContainer"] .children,
 div[class ="meinContainer"] .sub-menu {
     overflow: hidden;
     display: none;
-    /*background-color: #2D353E;*/
 }
-div[class ="meinContainer"] .sub-menu .navSub{
-    /*background-color: #2D353E;*/
-}
-
 div[class="meinContainer"] ul li div.expandable {
     display: flex;
     flex-direction: row-reverse;
     align-items: stretch;
     position: relative;
 }
-
 /* arrow rotations */
 .arrowRight{
     transform: rotate(0deg);
@@ -125,7 +126,7 @@ div[class="meinContainer"] ul li div.expandable {
 .arrowDown{
     transform: rotate(90deg);
 }
-/* submenu expand arrow icon*/
+/* submenu expand arrow icon*/    
 div[class="meinContainer"] .navSub {
     position: absolute;
     right: 0;
@@ -141,7 +142,6 @@ div[class="meinContainer"] .navSub {
     /*border-top-right-radius: .25rem;
     border-bottom-right-radius: .25rem;*/
 }
-
 /* events */
 div[class="meinContainer"] a[aria-current="page"] {
     color: #606770;
@@ -159,3 +159,4 @@ div[class="meinContainer"] a:hover {
     color: #F7F7EF;
     background-color: #21759b;
 }
+
