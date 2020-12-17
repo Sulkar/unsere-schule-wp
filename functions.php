@@ -150,14 +150,6 @@ function unsere_schule_scripts() {
 
 	wp_enqueue_script( 'unsere-schule-navigation', get_template_directory_uri() . '/js/navigation.js', array(), _S_VERSION, true );
 
-
-	/* 1. Bootstrap CSS */
-	wp_enqueue_style( 
-		'bootstrap',
-		get_template_directory_uri() . '/css/bootstrap.min.css',
-		array(),
-		'4.1.0'
-	);
 	/* Custom CSS */
 	wp_enqueue_style( 
 		'unsere-schule',
@@ -182,15 +174,29 @@ function unsere_schule_scripts() {
 		true
 	);
 
-	/* 2. Bootstrap JS */
-	wp_enqueue_script(
-		'bootstrap',
-		get_template_directory_uri() . '/js/bootstrap.min.js',
-		array( 'jquery' ),
-		'4.1.0', 
+	/* Prism syntax highlight CSS */
+	wp_enqueue_style(
+		'prism-highlighter',
+		get_template_directory_uri() . '/css/prism.css'
+	);
+
+	/* Prism syntax highlight JS */
+	wp_enqueue_script( 
+		'prism-highlighter',
+		get_template_directory_uri() . '/js/prism.js',
+		array(),
+		false,
 		true
 	);
-	
+
+	/* Prism syntax highlight JS */
+	wp_enqueue_script( 
+		'unsere-schule',
+		get_template_directory_uri() . '/js/unsere-schule.js',
+		array('jquery'),
+		'1.0.0',
+		true
+	);
 	
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -226,8 +232,6 @@ function register_navwalker(){
 	require_once get_template_directory() . '/navwalkers/UsSidebarNavwalker.php';
 }
 add_action( 'after_setup_theme', 'register_navwalker' );
-
-
 
 function move_admin_bar() {
 	echo '

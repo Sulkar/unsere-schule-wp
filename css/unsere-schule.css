@@ -1,11 +1,14 @@
-/*
+/* ---------------------------------------------------
     Background STYLE
-*/
-
+----------------------------------------------------- */
 @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
 body {
     /*font-family: 'Poppins', sans-serif;*/
     background: white;
+}
+
+ul, ol {
+    margin-left: 0px;
 }
 
 p {
@@ -60,6 +63,7 @@ p {
     max-width: 740px;
     margin: 0 auto;
     padding: 3rem 2.5rem;
+    overflow-wrap: anywhere; /* break long words to prevent overflow */
 }
 
 /* ---------------------------------------------------

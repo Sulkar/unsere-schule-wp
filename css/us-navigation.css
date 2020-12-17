@@ -4,6 +4,9 @@
 ----------------------------------------------------- */
 #header-nav{
     position: fixed;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-between;
     top: 0;
     left: 0;
     height: 3rem;
@@ -67,7 +70,7 @@
 .searchbox span {
     color: rgba(255, 255, 255, 0.6);
     position: absolute;
-    padding: 0rem 1rem;
+    padding: 0.2rem 0.6rem 0.2rem 0.5rem;
     right: 0;
     cursor: pointer;
 }
@@ -142,6 +145,10 @@ div[class="meinContainer"] .navSub {
     /*border-top-right-radius: .25rem;
     border-bottom-right-radius: .25rem;*/
 }
+div[class="meinContainer"] .navSub svg{
+    margin-top: 0.6rem;
+}
+
 /* events */
 div[class="meinContainer"] a[aria-current="page"] {
     color: #606770;
