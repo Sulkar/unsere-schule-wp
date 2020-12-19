@@ -155,7 +155,7 @@ function unsere_schule_scripts() {
 		'unsere-schule',
 		get_template_directory_uri() . '/css/unsere-schule.css',
 		array(),
-		'1.0.0'
+		'1.0.1'
 	);
 
 	/* Navbar CSS */
@@ -170,7 +170,7 @@ function unsere_schule_scripts() {
 		'unsere-schule-navbar',
 		get_template_directory_uri() . '/js/us-navigation.js',
 		array('jquery'),
-		'4.1.0',
+		'1.0.0',
 		true
 	);
 
@@ -185,7 +185,7 @@ function unsere_schule_scripts() {
 		'prism-highlighter',
 		get_template_directory_uri() . '/js/prism.js',
 		array(),
-		false,
+		'1.0.1',
 		true
 	);
 
@@ -233,6 +233,73 @@ function register_navwalker(){
 }
 add_action( 'after_setup_theme', 'register_navwalker' );
 
+/* display breadcrumbs */
+function get_breadcrumb() {
+	if (is_category() || is_single()){
+		echo '  ';
+		the_category (' • ');
+		if (is_single()) {
+			echo '  ';
+			the_title();
+		}
+	} elseif (is_page()) {
+		echo '  ';
+		$parentID = wp_get_post_parent_id(get_the_ID());
+		if($parentID != 0){
+			echo '<a href="' . home_url() . '/' . $parentID . '" >' . get_the_title($parentID) . '</a>';
+			echo ' ';
+		}
+		echo the_title();
+	} elseif (is_search()) {
+		echo '  '; //Search Results for…
+		echo ' ';
+		echo the_search_query();
+		echo ' ';
+	}
+}
+
+/* */
+function getPostIdByMetaKeyAndValue($key, $value) {
+	global $wpdb;
+	$meta = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM ".$wpdb->postmeta." WHERE meta_key=%s AND meta_value=%s", $key, $value ) );
+	if (is_array($meta) && !empty($meta) && isset($meta[0])) {
+		$meta = $meta[0];
+	}		
+	if (is_object($meta)) {
+		return $meta->post_id;
+	}
+	else {
+		return false;
+	}
+}
+
+
+/* get custom page_code meta data of post */
+function getPageCode($tempPostID){
+	$tempMeta = get_metadata( 'post', $tempPostID, 'page_code', false);
+	if(!empty($tempMeta)){
+		return $tempMeta[0];
+	}else{
+		return 0;
+	}
+}
+		
+/* shortcode for child pages */
+function listChildPages() { 
+	global $post; 
+	if ( is_page() && $post->post_parent )
+		$childpages = wp_list_pages( 'sort_column=menu_order&title_li=&child_of=' . $post->post_parent . '&echo=0' );
+	else
+		$childpages = wp_list_pages( 'sort_column=menu_order&title_li=&child_of=' . $post->ID . '&echo=0' );
+	if ( $childpages ) {
+		$string = '<ul class="wpb_page_list">' . $childpages . '</ul>';
+	}
+	return $string;
+}
+add_shortcode('wpb_childpages', 'listChildPages');
+
+
+/* move admin bar to bottom*/
 function move_admin_bar() {
 	echo '
 	<style type="text/css">
@@ -244,3 +311,22 @@ function move_admin_bar() {
 	</style>';
 	}
 	add_action( 'wp_head', 'move_admin_bar' );
+
+/* actions for code search input */
+add_action( 'admin_post_redirectByCode', 'redirectToPageByCode' );
+add_action( 'admin_post_nopriv_redirectByCode', 'redirectToPageByCode' );
+
+/* function called by search input action*/
+function redirectToPageByCode(){
+	$tempCode = (isset($_POST['search'])) ?sanitize_text_field($_POST['search']) : false;
+	$postID = getPostIdByMetaKeyAndValue('page_code', $tempCode);	
+
+	if($postID){
+		$tempUrl = home_url() . '/?p=' . $postID;
+		wp_redirect( $tempUrl );
+		exit;	
+	}else{
+		wp_redirect( home_url() );
+		exit;
+	}
+}

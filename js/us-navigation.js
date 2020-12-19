@@ -31,7 +31,11 @@ jQuery( document ).ready(function() {
         jQuery('#sidebar').toggleClass('active');
     });
     
-
+    // click button - code input form
+    jQuery('#searchBtn').on('click', function (){
+        jQuery("#myRedirectForm").submit();
+    });
+    
 });
 
 

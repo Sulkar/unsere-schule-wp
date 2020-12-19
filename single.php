@@ -51,7 +51,21 @@
 <!-- Page Content -->
 
 <div id="content">
-	
+	<span id="postID"> 
+		<?php
+			/* display custom permalink or post id*/
+			$post = get_post();
+			if(!empty( $post )){
+				$tempMeta = get_metadata( 'post', $post->ID, 'custom_permalink', false);
+				if(!empty($tempMeta)){
+					echo $tempMeta[0];
+				}else{
+					echo $post->ID;
+				}
+			} 			
+		?>
+	</span>
+	<div class="breadcrumb"><?php get_breadcrumb(); ?></div>
 	<main id="primary" class="site-main">
 		<?php
 			while ( have_posts() ) :

@@ -24,15 +24,21 @@
 		</div>
 		<span class="site-name">unsere-schule.org</span>
 	</a>
-	<div class="searchbox">
-		<input id="tempCode" type="number" placeholder="Code..." onKeyPress="if(this.value.length==8) return false;" />
-		<span id="searchBtn">
-		<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#F7F7EF" class="bi bi-search" viewBox="0 0 16 16">
-			<path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
-			<path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
-			</svg>
-		</span>
-	</div>
+
+
+	<form method="POST" id="myRedirectForm" action="<?php echo home_url() . '/wp-admin/admin-post.php' ?>" class="">
+		<div class="searchbox">
+			<input id="tempCode" name="search" type="number" placeholder="Code..." onKeyPress="if(this.value.length==8) return false;" />
+			<input type="hidden" name="action" value="redirectByCode" />
+			<span id="searchBtn">			
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#F7F7EF" class="bi bi-search" viewBox="0 0 16 16">
+					<path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.415 0l3.85 3.85a1 1 0 0 1-1.414 1.415l-3.85-3.85a1 1 0 0 1 0-1.415z"/>
+					<path fill-rule="evenodd" d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z"/>
+				</svg>			
+			</span>			
+		</div>
+	</form>
+	
 </header>
 
 <!-- Sidebar -->
@@ -55,12 +61,23 @@
 
 <!-- Page Content -->
 <div id="content">
+	<span id="postID"> 
+		<?php
+			echo getPageCode(get_post()->ID);
+		?>
+		
+	</span>
+	
+	
 
+
+
+	<div class="breadcrumb"><?php get_breadcrumb(); ?></div>
 	<main id="primary" class="site-main">
 		<?php
 			while ( have_posts() ) :
 			the_post();
-
+				
 			get_template_part( 'template-parts/content', 'page' );
 
 			// If comments are open or we have at least one comment, load up the comment template.

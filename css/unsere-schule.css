@@ -60,10 +60,20 @@ p {
     transition: all 0.3s;
 }
 #content {
-    max-width: 740px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 3rem 2.5rem;
     overflow-wrap: anywhere; /* break long words to prevent overflow */
+    word-break: normal; 
+}
+#postID{
+    position: absolute;
+    right: 1rem;
+}
+.wp-block-quote{
+    border-left: .25em solid #000;
+    margin: 0 0 1.75em;
+    padding-left: 1em;
 }
 
 /* ---------------------------------------------------
