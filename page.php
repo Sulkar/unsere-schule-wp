@@ -25,7 +25,6 @@
 		<span class="site-name">unsere-schule.org</span>
 	</a>
 
-
 	<form method="POST" id="myRedirectForm" action="<?php echo home_url() . '/wp-admin/admin-post.php' ?>" class="">
 		<div class="searchbox">
 			<input id="tempCode" name="search" type="number" placeholder="Code..." onKeyPress="if(this.value.length==8) return false;" />
@@ -38,7 +37,7 @@
 			</span>			
 		</div>
 	</form>
-	
+
 </header>
 
 <!-- Sidebar -->
@@ -62,17 +61,13 @@
 <!-- Page Content -->
 <div id="content">
 	<span id="postID"> 
-		<?php
-			echo getPageCode(get_post()->ID);
-		?>
-		
+		<?php echo getPageCode(get_post()->ID);	?>
 	</span>
 	
-	
+	<div class="breadcrumb">
+		<?php echo get_breadcrumb(get_post()->ID); ?>
+	</div>
 
-
-
-	<div class="breadcrumb"><?php get_breadcrumb(); ?></div>
 	<main id="primary" class="site-main">
 		<?php
 			while ( have_posts() ) :
@@ -89,6 +84,10 @@
 		?>
 
 	</main><!-- #main -->
+
+	<div id="pageNavigationFooter">
+    	<?php previous_post_link(); ?>    <?php next_post_link(); ?>
+	</div>
 
 </div> <!-- content -->
 

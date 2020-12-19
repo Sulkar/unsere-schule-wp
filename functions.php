@@ -234,28 +234,13 @@ function register_navwalker(){
 add_action( 'after_setup_theme', 'register_navwalker' );
 
 /* display breadcrumbs */
-function get_breadcrumb() {
-	if (is_category() || is_single()){
-		echo '  ';
-		the_category (' • ');
-		if (is_single()) {
-			echo '  ';
-			the_title();
-		}
-	} elseif (is_page()) {
-		echo '  ';
-		$parentID = wp_get_post_parent_id(get_the_ID());
-		if($parentID != 0){
-			echo '<a href="' . home_url() . '/' . $parentID . '" >' . get_the_title($parentID) . '</a>';
-			echo ' ';
-		}
-		echo the_title();
-	} elseif (is_search()) {
-		echo '  '; //Search Results for…
-		echo ' ';
-		echo the_search_query();
-		echo ' ';
+function get_breadcrumb($tempPostID) {
+	$parentIDs = array_reverse( get_post_ancestors($tempPostID) );
+	$tempBreadcrumbs = "";
+	foreach ($parentIDs as $parentID) {
+		$tempBreadcrumbs .= '<a href="' . home_url() . '/?p=' . $parentID . '" >' . get_the_title($parentID) . '</a> > ';
 	}
+	return $tempBreadcrumbs;
 }
 
 /* */
@@ -280,7 +265,7 @@ function getPageCode($tempPostID){
 	if(!empty($tempMeta)){
 		return $tempMeta[0];
 	}else{
-		return 0;
+		return "";
 	}
 }
 		
