@@ -11,7 +11,7 @@
     left: 0;
     height: 3rem;
     width: 100%;
-    background-color:#31ADC0;
+    background-color: #f17171; 
 }
 .navbar-logo{
     display: block;
@@ -58,7 +58,7 @@
     color: #fff;
     width: 130px;
     height: 30px;
-    background: #5CB85C;
+    background: #a2d471;
     border: 0;
     padding: 0 0 0 15px;
     margin: 0;
@@ -87,7 +87,7 @@
     sidebar navigation
 ----------------------------------------------------- */
 div[class="meinContainer"] a {
-    color: #21759b;
+    color: #242A31;
     
 }
 div[class="meinContainer"] ul {
@@ -139,7 +139,7 @@ div[class="meinContainer"] .navSub {
     font-size: 20px;
     width: 40px;
     height: 100%;
-    color: #21759b;
+    color: #8B98A6;
     border: 0;
     /*border-left: 1px solid rgb(255, 255, 255);*/
     /*border-top-right-radius: .25rem;
@@ -157,13 +157,13 @@ div[class="meinContainer"] a[aria-current="page"] {
 }
 div[class="meinContainer"] ul li .navSub:hover,
 div[class="meinContainer"] ul li .navSub:focus {
-    color: #F7F7EF;
-    background-color: #21759b;
+    /*color: #F7F7EF;*/
+    background-color: #E6ECF1;
     /*color: #38424D;
     background-color: #FF997F;*/
 }
 div[class="meinContainer"] a:hover {
-    color: #F7F7EF;
-    background-color: #21759b;
+    /*color: #F7F7EF;*/
+    background-color: #E6ECF1;
 }
 

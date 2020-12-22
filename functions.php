@@ -272,14 +272,14 @@ function getPageCode($tempPostID){
 /* shortcode for child pages */
 function listChildPages() { 
 	global $post; 
-	if ( is_page() && $post->post_parent )
-		$childpages = wp_list_pages( 'sort_column=menu_order&title_li=&child_of=' . $post->post_parent . '&echo=0' );
-	else
-		$childpages = wp_list_pages( 'sort_column=menu_order&title_li=&child_of=' . $post->ID . '&echo=0' );
-	if ( $childpages ) {
-		$string = '<ul class="wpb_page_list">' . $childpages . '</ul>';
-	}
-	return $string;
+
+	$childpages = wp_list_pages( array(
+		'title_li'    => '',
+		'child_of'    => $post->ID,
+		'post_status' => array( 'publish', 'private' )
+	) );
+
+	return $childpages;
 }
 add_shortcode('wpb_childpages', 'listChildPages');
 
