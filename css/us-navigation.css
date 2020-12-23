@@ -75,12 +75,26 @@
     cursor: pointer;
 }
 
+/* ---------------------------------------------------
+    buttons
+----------------------------------------------------- */
 /* hamburger button */
 #btn-sidebar-collapse{
     font-size: 2rem;
     color: tomato;
     margin-top: -10px;
     cursor: pointer;
+}
+/* button to top */
+#btnToTop{
+    bottom: 0;
+    right: 0;
+    position: fixed;
+    padding-right: 2em;
+    padding-bottom: 2em;
+    width: 5rem;
+    cursor: pointer;
+    display: none;
 }
 
 /* ---------------------------------------------------
@@ -105,7 +119,10 @@ div[class="meinContainer"] ul a {
 }
 div[class="meinContainer"] ul ul {
     margin-left: 10px;
-    /*border-left: 2px solid rgb(255, 255, 255);*/
+    border-left: 1px solid #9DAAB6;
+}
+div[class="meinContainer"] ul ul a{
+    color:  #9DAAB6;
 }
 div[class="meinContainer"] ul li.menu-item-has-children > div.expandable > a{
     margin-right: 40px;
@@ -142,8 +159,7 @@ div[class="meinContainer"] .navSub {
     color: #8B98A6;
     border: 0;
     /*border-left: 1px solid rgb(255, 255, 255);*/
-    /*border-top-right-radius: .25rem;
-    border-bottom-right-radius: .25rem;*/
+
 }
 div[class="meinContainer"] .navSub svg{
     margin-top: 0.6rem;
@@ -151,19 +167,16 @@ div[class="meinContainer"] .navSub svg{
 
 /* events */
 div[class="meinContainer"] a[aria-current="page"] {
-    color: #606770;
+    color: #D64545;
     background-color: white;
     display: flex;
 }
+
 div[class="meinContainer"] ul li .navSub:hover,
 div[class="meinContainer"] ul li .navSub:focus {
-    /*color: #F7F7EF;*/
     background-color: #E6ECF1;
-    /*color: #38424D;
-    background-color: #FF997F;*/
 }
 div[class="meinContainer"] a:hover {
-    /*color: #F7F7EF;*/
     background-color: #E6ECF1;
 }
 

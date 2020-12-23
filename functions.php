@@ -163,14 +163,14 @@ function unsere_schule_scripts() {
 		'unsere-schule-navbar',
 		get_template_directory_uri() . '/css/us-navigation.css',
 		array(),
-		'4.1.0'
+		'1.0.1'
 	);
 	/* Navbar JS */
 	wp_enqueue_script( 
 		'unsere-schule-navbar',
 		get_template_directory_uri() . '/js/us-navigation.js',
 		array('jquery'),
-		'1.0.0',
+		'1.0.1',
 		true
 	);
 
