@@ -272,16 +272,26 @@ function getPageCode($tempPostID){
 /* shortcode for child pages */
 function listChildPages() { 
 	global $post; 
-
+	
 	$childpages = wp_list_pages( array(
 		'title_li'    => '',
+		'echo'		=> false,
 		'child_of'    => $post->ID,
 		'post_status' => array( 'publish', 'private' )
 	) );
-
-	return $childpages;
+	
+	if($childpages) return '<ul class="wpb_page_list">' . $childpages . '</ul>';
+	else return "";
+	
 }
-add_shortcode('wpb_childpages', 'listChildPages');
+add_shortcode('wpus_childpages', 'listChildPages');
+
+
+/* test shortcode */
+add_shortcode('my-wporg', 'wporg_shortcode');
+function wporg_shortcode( $atts = [], $content = null) {
+    return "Hello";
+}
 
 
 /* move admin bar to bottom*/
