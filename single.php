@@ -51,6 +51,7 @@
 <!-- Page Content -->
 
 <div id="content">
+	<div id="overlay"> </div>
 	<span id="postID"> 
 		<?php echo getPageCode(get_post()->ID);	?>
 	</span>

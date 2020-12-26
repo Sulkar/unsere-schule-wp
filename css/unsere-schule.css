@@ -17,6 +17,23 @@ body::before {
     will-change: transform;
     z-index: -1;
 }
+body.noscroll{
+    overflow: hidden;
+}
+#overlay{
+    display: none;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 10;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+}
+#overlay.active{
+    display: block;
+}
 
 ul, ol {
     margin-left: 0px;
@@ -44,7 +61,6 @@ p {
 #sidebar {
     min-width: 250px;
     max-width: 250px;
-    /*background: #F7F7EF;*/
     background: #F5F7F9;
     color: #3884FE;
     transition: all 0.3s;
@@ -53,6 +69,7 @@ p {
     left: 0;
     bottom: 0;
     overflow-y: auto;
+    z-index: 11;
 }
 
 
@@ -78,6 +95,7 @@ p {
     padding: 4rem 2.5rem 2rem 2.5rem;
     word-wrap:break-word;
 }
+
 #postID{
     position: absolute;
     right: 1rem;
@@ -88,11 +106,199 @@ p {
     padding-left: 1em;
 }
 
+
+/* ---------------------------------------------------
+    header navigation
+----------------------------------------------------- */
+#header-nav{
+    position: fixed;
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-between;
+    top: 0;
+    left: 0;
+    height: 3rem;
+    width: 100%;
+    background-color: #f17171; 
+    z-index: 12;
+}
+.navbar-logo{
+    /*display: block;*/
+    width: 2rem;
+    height: 2rem;
+}
+.navbar-toggle{ 
+    display: none;
+    width: 2rem;
+    height: 2rem;
+}
+.sidebar-button{ /* uschule logo */
+    cursor: pointer;
+    display: block;
+    position: absolute;
+    top: 0.5rem;
+}
+.site-name{
+    display: inline-block;
+    margin-left: 2.5rem;
+    color: #F7F7EF;
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+
+/* ---------------------------------------------------
+    search box
+----------------------------------------------------- */
+.searchbox {
+    border: 0px;
+    position: relative;
+    border-radius: 4px;
+}
+.searchbox input::-webkit-outer-spin-button,
+.searchbox input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.searchbox input[type="number"] {
+  -moz-appearance: textfield;
+}
+.searchbox > input[type="number"]:focus{
+    color: #fff;
+    outline: none;
+}
+.searchbox #tempCode {
+    display: inline-block;
+    color: #fff;
+    width: 130px;
+    height: 30px;
+    background: #a2d471;
+    border: 0;
+    padding: 0 0 0 15px;
+    margin: 0;
+    font-weight: 400;
+}
+.searchbox input::placeholder {
+    color: #fff;
+}
+.searchbox span {
+    color: rgba(255, 255, 255, 0.6);
+    position: absolute;
+    padding: 0.2rem 0.6rem 0.2rem 0.5rem;
+    right: 0;
+    cursor: pointer;
+}
+
+/* ---------------------------------------------------
+    buttons
+----------------------------------------------------- */
+/* hamburger button */
+#btn-sidebar-collapse{
+    font-size: 2rem;
+    color: tomato;
+    margin-top: -10px;
+    cursor: pointer;
+}
+/* button to top */
+#btnToTop{
+    bottom: 0;
+    right: 0;
+    position: fixed;
+    padding-right: 2em;
+    padding-bottom: 2em;
+    width: 5rem;
+    cursor: pointer;
+    display: none;
+}
+
+/* ---------------------------------------------------
+    sidebar navigation
+----------------------------------------------------- */
+div[class="meinContainer"] a {
+    color: #242A31;
+    
+}
+div[class="meinContainer"] ul {
+    margin-left: 0;
+    padding-left: 0;
+    list-style: none;
+}
+div[class="meinContainer"] ul a {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 1.05rem;
+    padding: 8px 8px 8px 13px;
+    text-decoration: none;
+}
+div[class="meinContainer"] ul ul {
+    margin-left: 10px;
+    border-left: 1px solid #9DAAB6;
+}
+div[class="meinContainer"] ul ul a{
+    color:  #9DAAB6;
+}
+div[class="meinContainer"] ul li.menu-item-has-children > div.expandable > a{
+    margin-right: 40px;
+}
+/* hide all submenu */
+div[class="meinContainer"] .children,
+div[class ="meinContainer"] .sub-menu {
+    overflow: hidden;
+    display: none;
+}
+div[class="meinContainer"] ul li div.expandable {
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: stretch;
+    position: relative;
+}
+/* arrow rotations */
+.arrowRight{
+    transform: rotate(0deg);
+}
+.arrowDown{
+    transform: rotate(90deg);
+}
+/* submenu expand arrow icon*/    
+div[class="meinContainer"] .navSub {
+    position: absolute;
+    right: 0;
+    cursor: pointer;
+    text-align: center;
+    display: inline-block;
+    font-size: 20px;
+    width: 40px;
+    height: 100%;
+    color: #8B98A6;
+    border: 0;
+    /*border-left: 1px solid rgb(255, 255, 255);*/
+
+}
+div[class="meinContainer"] .navSub svg{
+    margin-top: 0.6rem;
+}
+
+/* events */
+div[class="meinContainer"] a[aria-current="page"] {
+    color: #D64545;
+    background-color: white;
+    display: flex;
+}
+
+div[class="meinContainer"] ul li .navSub:hover,
+div[class="meinContainer"] ul li .navSub:focus {
+    background-color: #E6ECF1;
+}
+div[class="meinContainer"] a:hover {
+    background-color: #E6ECF1;
+}
+
+
 /* ---------------------------------------------------
     MEDIAQUERIES
 ----------------------------------------------------- */
 
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
     #page {
         padding-left: 0px;
     }
@@ -105,4 +311,43 @@ p {
     #btn-sidebar-collapse {
         display: inline-block;
     }
+
+    .navbar-logo{
+        display: none;     
+    }
+    .navbar-toggle{ 
+        display: block;
+    }
+    
 }
+
+
+/* ---------------------------------------------------
+    pagnation test
+----------------------------------------------------- */
+.pagination {
+    clear:both;
+    position:relative;
+    font-size:16px; 
+    line-height:13px;
+    float:right; 
+     list-style-type:none;
+     width:100%; 
+ }
+ .pagination span, .pagination a {
+    display:block;
+    float:left;
+    margin: 2px 2px 2px 0;
+    padding:6px 9px 5px 9px;
+    text-decoration:none;
+    width:auto;
+    color:#fff; 
+    background: #237697; 
+ }
+ .pagination a:hover{
+    color:#fff;
+    background: #000; 
+ }
+ .pagination .active > a.page-link{
+    background: #999; 
+ }

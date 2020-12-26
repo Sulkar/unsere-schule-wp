@@ -288,9 +288,25 @@ add_shortcode('wpus_childpages', 'listChildPages');
 
 
 /* test shortcode */
-add_shortcode('my-wporg', 'wporg_shortcode');
+add_shortcode('wpus_wporg', 'wporg_shortcode');
 function wporg_shortcode( $atts = [], $content = null) {
-    return "Hello";
+	
+	$pagesAr = get_pages(array(
+		'sort_column' => 'post_date',
+		'sort_order' => 'DESC'	
+	) );
+
+	$result = "start: ";
+	foreach($pagesAr as $page){
+		$pageID = $page->ID;
+		$result = $atts['myExclude'];
+		/*if(!in_array($pageID, $atts['myExclude'])){
+			$pageLink = esc_url( get_page_link( $pageID ) );
+			$pageTitle = get_the_title($pageID);
+			$result .= "<a href=" . $pageLink . ">" . $pageTitle . "</a><br>";
+		}*/
+	}
+    return $result;
 }
 
 
@@ -325,3 +341,36 @@ function redirectToPageByCode(){
 		exit;
 	}
 }
+
+//  Custom pagination function for pages on startpage
+function start_us_pagination($pages, $range)
+{
+	global $paged;
+	if(empty($paged)) $paged = 1;
+	if($pages == '')	{
+		global $wp_query;
+		$pages = $wp_query->max_num_pages;
+		if(!$pages)		{
+			$pages = 1;
+		}
+	}
+	if(1 != $pages){
+		echo "<nav aria-label='Page navigation'>  <ul class='pagination'> <span>Page ".$paged." of ".$pages."</span>";
+		// First button
+		if($paged > $range+1) echo "<a href='".get_pagenum_link(1)."'>First</a>";
+		// Previous button
+		if($paged > 1) echo "<a href='".get_pagenum_link($paged - 1)."'>Previous</a>";
+		for ($i=1; $i <= $pages; $i++)		{
+			// pages 1 - n
+			if (1 != $pages &&( !($i >= $paged+$range+1 || $i <= $paged-$range-1) )){
+				echo ($paged == $i)? "<li class=\"page-item active\"><a class='page-link'>".$i."</a></li>":"<li class='page-item'> <a href='".get_pagenum_link($i)."' class=\"page-link\">".$i."</a></li>";
+			}
+		}
+		// Next button
+		if ($paged < $pages ) echo " <li class='page-item'><a class='page-link' href=\"".get_pagenum_link($paged + 1)."\">Next</a></li>";
+		// Last button
+		if ($paged + $range < $pages ) echo " <li class='page-item'><a class='page-link' href='".get_pagenum_link($pages)."'>Last</a></li>";
+		echo "</ul></nav>\n";
+	}
+}
+		

@@ -1,16 +1,6 @@
 <?php
-/**
- * The template for displaying all pages
- *
- * This is the template that displays all pages by default.
- * Please note that this is the WordPress construct of pages
- * and that other 'pages' on your WordPress site may use a
- * different template.
- *
- * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
- *
- * @package unsere-schule 
- */
+
+/* Template Name: Template Home */
 
 ?>
 
@@ -73,25 +63,35 @@
 	</div>
 
 	<main id="primary" class="site-main">
-		<?php
-			while ( have_posts() ) :
-			the_post();
-				
-			get_template_part( 'template-parts/content', 'page' );
+  
+  <?php
+    /*$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;*/
+	$paged = ( get_query_var( 'page' ) ) ? get_query_var( 'page' ) : 1;
 
-			// If comments are open or we have at least one comment, load up the comment template.
-			if ( comments_open() || get_comments_number() ) :
-			comments_template();
-			endif;
+    $args = array(
+      'post_type' => 'page',
+      'post__not_in' => array(9,636),
+      'posts_per_page' => 10,
+      'paged' => $paged
+    );
 
-			endwhile; // End of the loop.
-		?>
+    $customQuery = new WP_Query($args);
+    if($customQuery->have_posts() ): 
+      while($customQuery->have_posts()) :
+        $customQuery->the_post();
+        echo '<a href="'.get_page_link().'">'.get_the_title().'</a><br>';
+	endwhile; 
+    endif; 
+
+    wp_reset_query();
+
+    if (function_exists("start_us_pagination")) {
+		start_us_pagination($customQuery->max_num_pages, 3); 
+    }
+
+	?>
 
 	</main><!-- #main -->
-
-	<div id="pageNavigationFooter">
-    	<?php previous_post_link(); ?>    <?php next_post_link(); ?>
-	</div>
 
 </div> <!-- content -->
 

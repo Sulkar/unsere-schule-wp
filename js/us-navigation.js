@@ -27,8 +27,17 @@ jQuery(document).ready(function () {
     });
 
     // click hamburger menu
-    jQuery('#btn-sidebar-collapse').on('click', function () {
+    jQuery('.navbar-toggle').on('click', function (event) {
+        event.preventDefault();
         jQuery('#sidebar').toggleClass('active');
+        jQuery('body').toggleClass('noscroll');
+        jQuery('#overlay').toggleClass('active');
+    });
+    // click overlay
+    jQuery('#overlay').on('click', function() {
+        jQuery('#sidebar').toggleClass('active');
+        jQuery('body').toggleClass('noscroll');
+        jQuery('#overlay').toggleClass('active');
     });
 
     // click button - code input form
@@ -37,7 +46,7 @@ jQuery(document).ready(function () {
     });
 
 
-    // click button - code input form
+    // button - scroll to top
     window.onscroll = function () { scrollFunction() };
     jQuery('#btnToTop').on('click', function () {
         document.body.scrollTop = 0; // For Safari
