@@ -13,4 +13,3 @@ Added custom files and modules:
 - created custom nav walker: /navwalkers/us-sidebar-walker.php
 - changed page.php (for pages)
 - changed single.php (for posts)
-
