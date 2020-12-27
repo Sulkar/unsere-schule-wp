@@ -11,7 +11,14 @@
 
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
-		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+		<?php 		
+			echo '<h1 class="entry-title">';
+			echo the_title(); 
+			$tempPageCode = getPageCode(get_post()->ID);
+			if($tempPageCode != ""){
+				echo ' <span class="code-badge">'.$tempPageCode.'</span></h1>'; 
+			}	
+		?>
 	</header><!-- .entry-header -->
 
 	<?php unsere_schule_post_thumbnail(); ?>

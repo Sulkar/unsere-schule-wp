@@ -21,9 +21,6 @@
 <!-- Page Content -->
 <div id="content">
 	<div id="overlay"> </div>
-	<span id="postID"> 
-		<?php echo getPageCode(get_post()->ID);	?>
-	</span>
 	
 	<div class="breadcrumb">
 		<?php echo get_breadcrumb(get_post()->ID); ?>
