@@ -271,8 +271,6 @@ div[class="meinContainer"] .navSub {
     height: 100%;
     color: #8B98A6;
     border: 0;
-    /*border-left: 1px solid rgb(255, 255, 255);*/
-
 }
 div[class="meinContainer"] .navSub svg{
     margin-top: 0.6rem;

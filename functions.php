@@ -277,6 +277,8 @@ function listChildPages() {
 		'title_li'    => '',
 		'echo'		=> false,
 		'child_of'    => $post->ID,
+		'sort_column' => 'post_date',
+		'sort_order' => 'ASC',
 		'post_status' => array( 'publish', 'private' )
 	) );
 	
@@ -285,29 +287,6 @@ function listChildPages() {
 	
 }
 add_shortcode('wpus_childpages', 'listChildPages');
-
-
-/* test shortcode */
-add_shortcode('wpus_wporg', 'wporg_shortcode');
-function wporg_shortcode( $atts = [], $content = null) {
-	
-	$pagesAr = get_pages(array(
-		'sort_column' => 'post_date',
-		'sort_order' => 'DESC'	
-	) );
-
-	$result = "start: ";
-	foreach($pagesAr as $page){
-		$pageID = $page->ID;
-		$result = $atts['myExclude'];
-		/*if(!in_array($pageID, $atts['myExclude'])){
-			$pageLink = esc_url( get_page_link( $pageID ) );
-			$pageTitle = get_the_title($pageID);
-			$result .= "<a href=" . $pageLink . ">" . $pageTitle . "</a><br>";
-		}*/
-	}
-    return $result;
-}
 
 
 /* move admin bar to bottom*/

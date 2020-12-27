@@ -16,7 +16,6 @@ jQuery(document).ready(function () {
             : jQuery(this).parent().siblings('.children').slideToggle();
 
         menuToggle.toggleClass('open');
-        //jQuery( this ).attr( 'aria-expanded', menuToggle.hasClass('open') );
 
         if (jQuery(this).find('svg').hasClass('arrowDown')) {
             jQuery(this).find('svg').removeClass('arrowDown');
