@@ -1,26 +1,28 @@
 jQuery(document).ready(function () {
 
-    // display all parent elements of active nav-item
-    jQuery('a[aria-current="page"]').parents().show();
-
-    // set arrow down to all navSub of selected elements
-    jQuery('.current-menu-ancestor > div > div > svg').addClass('arrowDown');
+    // display all parent elements of active nav-item, flip parent elements arrows down,
+    // check if actual navbar item or corresponding child item is selected
+    if(jQuery('a[aria-current="page"]').length == 1){
+        jQuery('a[aria-current="page"]').parents().show();
+        jQuery('.current-menu-ancestor > div > .navSub').addClass('arrowDown');
+    }else{
+        jQuery('.current-page-ancestor > .expandable > a').parents().show();
+        jQuery('.current-page-ancestor').parents('ul').siblings('.expandable').children('.navSub').addClass('arrowDown');
+    }
 
     // click nav arrow
     jQuery(document).on('click', '.navSub', function () {
 
-        var menuToggle = jQuery(this).closest('.menu-item-has-children');
+        jQuery(this).closest('.menu-item-has-children').toggleClass('open');
 
         jQuery(this).parent().siblings('.sub-menu').length
             ? jQuery(this).parent().siblings('.sub-menu').slideToggle()
             : jQuery(this).parent().siblings('.children').slideToggle();
 
-        menuToggle.toggleClass('open');
-
-        if (jQuery(this).find('svg').hasClass('arrowDown')) {
-            jQuery(this).find('svg').removeClass('arrowDown');
+        if (jQuery(this).hasClass('arrowDown')) {
+            jQuery(this).removeClass('arrowDown');
         } else {
-            jQuery(this).find('svg').addClass('arrowDown');
+            jQuery(this).addClass('arrowDown');
         }
 
     });

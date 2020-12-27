@@ -155,16 +155,9 @@ function unsere_schule_scripts() {
 		'unsere-schule',
 		get_template_directory_uri() . '/css/unsere-schule.css',
 		array(),
-		'1.0.1'
+		'1.0.2'
 	);
 
-	/* Navbar CSS */
-	wp_enqueue_style( 
-		'unsere-schule-navbar',
-		get_template_directory_uri() . '/css/us-navigation.css',
-		array(),
-		'1.0.1'
-	);
 	/* Navbar JS */
 	wp_enqueue_script( 
 		'unsere-schule-navbar',
@@ -233,7 +226,9 @@ function register_navwalker(){
 }
 add_action( 'after_setup_theme', 'register_navwalker' );
 
-/* display breadcrumbs */
+/**
+ * display breadcrumbs
+ */
 function get_breadcrumb($tempPostID) {
 	$parentIDs = array_reverse( get_post_ancestors($tempPostID) );
 	$tempBreadcrumbs = "";
@@ -243,7 +238,9 @@ function get_breadcrumb($tempPostID) {
 	return $tempBreadcrumbs;
 }
 
-/* */
+/**
+ * get post ID by custom page_code meta data -> for code search
+ */
 function getPostIdByMetaKeyAndValue($key, $value) {
 	global $wpdb;
 	$meta = $wpdb->get_results( $wpdb->prepare( "SELECT * FROM ".$wpdb->postmeta." WHERE meta_key=%s AND meta_value=%s", $key, $value ) );
@@ -259,7 +256,9 @@ function getPostIdByMetaKeyAndValue($key, $value) {
 }
 
 
-/* get custom page_code meta data of post */
+/**
+ * get custom page_code meta data of post 
+ */
 function getPageCode($tempPostID){
 	$tempMeta = get_metadata( 'post', $tempPostID, 'page_code', false);
 	if(!empty($tempMeta)){
@@ -269,7 +268,9 @@ function getPageCode($tempPostID){
 	}
 }
 		
-/* shortcode for child pages */
+/**
+ * shortcode for child pages 
+ */
 function listChildPages() { 
 	global $post; 
 	
@@ -277,7 +278,7 @@ function listChildPages() {
 		'title_li'    => '',
 		'echo'		=> false,
 		'child_of'    => $post->ID,
-		'sort_column' => 'post_date',
+		'sort_column' => 'menu_order',
 		'sort_order' => 'ASC',
 		'post_status' => array( 'publish', 'private' )
 	) );
@@ -289,7 +290,9 @@ function listChildPages() {
 add_shortcode('wpus_childpages', 'listChildPages');
 
 
-/* move admin bar to bottom*/
+/**
+ * move admin bar to bottom
+ */
 function move_admin_bar() {
 	echo '
 	<style type="text/css">
@@ -302,11 +305,15 @@ function move_admin_bar() {
 	}
 	add_action( 'wp_head', 'move_admin_bar' );
 
-/* actions for code search input */
+/**
+ * actions for code search input 
+ */
 add_action( 'admin_post_redirectByCode', 'redirectToPageByCode' );
 add_action( 'admin_post_nopriv_redirectByCode', 'redirectToPageByCode' );
 
-/* function called by search input action*/
+/**
+ * function called by search input action
+ */
 function redirectToPageByCode(){
 	$tempCode = (isset($_POST['search'])) ?sanitize_text_field($_POST['search']) : false;
 	$postID = getPostIdByMetaKeyAndValue('page_code', $tempCode);	
@@ -316,12 +323,14 @@ function redirectToPageByCode(){
 		wp_redirect( $tempUrl );
 		exit;	
 	}else{
-		wp_redirect( home_url() );
+		wp_redirect( home_url() . '/sitemap/' ); //redirect to sitemap, if no code is found
 		exit;
 	}
 }
 
-//  Custom pagination function for pages on startpage
+/**
+ *  Custom pagination function for pages on startpage
+ */
 function start_us_pagination($pages, $range)
 {
 	global $paged;
@@ -353,3 +362,34 @@ function start_us_pagination($pages, $range)
 	}
 }
 		
+/**
+ * custom page hooks for displaying next/previous posts by menu order
+ */
+function my_previous_post_where() {
+	global $post, $wpdb;
+	return $wpdb->prepare( "WHERE p.menu_order < %s AND p.post_type = %s AND p.post_parent = %s AND p.post_status = 'publish'", 
+		$post->menu_order, $post->post_type, $post->post_parent);
+}
+// überschreibt "get_previous_post_where"
+add_filter( 'get_previous_post_where', 'my_previous_post_where' );
+
+function my_next_post_where() {
+	global $post, $wpdb;
+	return $wpdb->prepare( "WHERE p.menu_order > %s AND p.post_type = %s AND p.post_parent = %s AND p.post_status = 'publish'", 
+		$post->menu_order, $post->post_type, $post->post_parent);
+}
+// überschreibt "get_next_post_where"
+add_filter( 'get_next_post_where', 'my_next_post_where' );
+
+function my_previous_post_sort() {
+	return "ORDER BY p.menu_order desc LIMIT 1";
+}
+// überschreibt "get_previous_post_sort"
+add_filter( 'get_previous_post_sort', 'my_previous_post_sort' );
+
+function my_next_post_sort() {
+	return "ORDER BY p.menu_order asc LIMIT 1";
+}
+// überschreibt "get_next_post_sort"
+add_filter( 'get_next_post_sort', 'my_next_post_sort' );
+

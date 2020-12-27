@@ -1,6 +1,6 @@
 <?php
 
-/* Template Name: Template Home */
+/* Template Name: Template Sitemap */
 
 ?>
 
@@ -28,36 +28,32 @@
 	<main id="primary" class="site-main">
   
   <?php
-    
+
     while ( have_posts() ) :
       the_post();      
       get_template_part( 'template-parts/content', 'page' );
     endwhile;
 
-    /*$paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;*/
-	  $paged = ( get_query_var( 'page' ) ) ? get_query_var( 'page' ) : 1;
-
     $args = array(
       'post_type' => 'page',
-      'post__not_in' => array(9,636),
-      'posts_per_page' => 10,
-      'paged' => $paged
+      'posts_per_page' => -1,
+      'order' => 'ASC',
+      'orderby' => 'title'
     );
 
     $customQuery = new WP_Query($args);
     if($customQuery->have_posts() ): 
-      echo '<br>';
+      echo '<figure class="myTable"><table><tr><th style="text-align:center;">Page Code</th><th>Titel der Seite</th></tr>';
       while($customQuery->have_posts()) :
-        $customQuery->the_post();        
-        echo '<a href="'.get_page_link().'">'.get_the_title().'</a><br>';
-	    endwhile; 
+        $customQuery->the_post();
+        $pageCode = getPageCode(get_the_ID());
+        echo '<tr><td style="text-align:center;">'.$pageCode.'</td><td><a href="'.get_page_link().'">'.get_the_title().'</a></td></tr>';
+      endwhile; 
+      echo '</table></figure>';
     endif; 
 
     wp_reset_query();
 
-    if (function_exists("start_us_pagination")) {
-		start_us_pagination($customQuery->max_num_pages, 3); 
-    }
 
 	?>
 

@@ -209,6 +209,23 @@ p {
     cursor: pointer;
     display: none;
 }
+/* ---------------------------------------------------
+    tables
+----------------------------------------------------- */
+.myTable table {
+    border-collapse: collapse;
+    width: 100%;
+}
+.myTable td,
+.myTable th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 5px;
+}
+  
+.grey-stripes tr:nth-child(even) {
+    background-color: #dddddd;
+}
 
 /* ---------------------------------------------------
     sidebar navigation
@@ -290,8 +307,11 @@ div[class="meinContainer"] ul li .navSub:focus {
 div[class="meinContainer"] a:hover {
     background-color: #E6ECF1;
 }
-
-
+/* highlight parent element on navigation */
+.current-page-ancestor > .expandable > a{
+    background-color: white;
+    color: #D64545;
+}
 /* ---------------------------------------------------
     MEDIAQUERIES
 ----------------------------------------------------- */
