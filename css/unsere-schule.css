@@ -69,6 +69,7 @@ p {
     left: 0;
     bottom: 0;
     overflow-y: auto;
+    overflow-x: hidden;
     z-index: 11;
 }
 
@@ -160,6 +161,7 @@ p {
 .searchbox {
     border: 0px;
     position: relative;
+    background: #a2d471;
     border-radius: 4px;
 }
 .searchbox input::-webkit-outer-spin-button,
@@ -177,11 +179,11 @@ p {
 .searchbox #tempCode {
     display: inline-block;
     color: #fff;
-    width: 130px;
+    width: 80px;
     height: 30px;
     background: #a2d471;
     border: 0;
-    padding: 0 0 0 15px;
+    padding: 0 0 0 8px;
     margin: 0;
     font-weight: 400;
 }
@@ -190,8 +192,8 @@ p {
 }
 .searchbox span {
     color: rgba(255, 255, 255, 0.6);
-    position: absolute;
-    padding: 0.2rem 0.6rem 0.2rem 0.5rem;
+    position: inline-block;
+    padding: 0.2rem 0.5rem 0.2rem 0.5rem;
     right: 0;
     cursor: pointer;
 }
@@ -235,6 +237,7 @@ p {
     background-color: #dddddd;
 }
 
+  
 /* ---------------------------------------------------
     sidebar navigation
 ----------------------------------------------------- */
@@ -377,3 +380,19 @@ div[class="meinContainer"] a:hover {
  .pagination .active > a.page-link{
     background: #999; 
  }
+
+ /* ---------------------------------------------------
+    icons styles
+----------------------------------------------------- */
+.icon {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    stroke-width: 0;
+    stroke: currentColor;
+    fill: currentColor;
+  }
+  
+  .icon-schoolred {
+    width: 1.25em;
+  }

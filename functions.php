@@ -268,9 +268,10 @@ function getPageCode($tempPostID){
 	}
 }
 		
-/**
- * shortcode for child pages 
- */
+/* ---------------------------------------------------
+    SHORTCODES
+----------------------------------------------------- */
+// [wpus_childpages]
 function listChildPages() { 
 	global $post; 
 	
@@ -282,13 +283,42 @@ function listChildPages() {
 		'sort_order' => 'ASC',
 		'post_status' => array( 'publish', 'private' )
 	) );
-	
 	if($childpages) return '<ul class="wpb_page_list">' . $childpages . '</ul>';
-	else return "";
-	
+	else return "";	
 }
-add_shortcode('wpus_childpages', 'listChildPages');
+// [wpus_loadImage image="something.jpg"]
+function loadImage($atts){
+	$a = shortcode_atts( array(
+        'image' => ''
+    ), $atts );
+	$imagePath = get_template_directory_uri() . '/images/' . $atts['image'];
+	return '<img src="'.$imagePath.'"/>';
+}
+// [wpus_loadIcon icon="icon-home"]
+function loadIcon($atts = [], $content = null, $tag = ''){
+	$a = shortcode_atts( array(
+		'icon' => '',
+		'color' => 'currentColor',
+		'width' => '1em',
+		'heigth' => '1em'
 
+	), $atts );
+	$iconPath = get_template_directory_uri() . '/icons/symbol-defs.svg#' . $a['icon'];
+	return '<svg class="icon" style="color: '.$a['color'].'; width: '.$a['width'].'; height: '.$a['heigth'].';"><use href="'.$iconPath.'"></use></svg>';
+}
+// test wpus_zeigeUeberschrift
+function zeigeUeberschrift( $atts, $content = null ) {
+	return '<h1>'.$content.'</h1>';
+}
+
+// Central location to create all shortcodes.
+function us_shortcodes_init() {
+	add_shortcode('wpus_childpages', 'listChildPages');
+	add_shortcode( 'us_loadImage', 'loadImage');
+	add_shortcode( 'us_loadIcon', 'loadIcon');
+	add_shortcode( 'us_zeigeUeberschrift', 'zeigeUeberschrift');
+}
+add_action( 'init', 'us_shortcodes_init' );
 
 /**
  * move admin bar to bottom
