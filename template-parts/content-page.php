@@ -21,7 +21,7 @@
 		?>
 	</header><!-- .entry-header -->
 
-	<?php unsere_schule_post_thumbnail(); ?>
+	
 
 	<div class="entry-content">
 		<?php

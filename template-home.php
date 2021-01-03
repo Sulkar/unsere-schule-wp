@@ -44,8 +44,17 @@
     if($customQuery->have_posts() ): 
       echo '<br>';
       while($customQuery->have_posts()) :
+        //display post
         $customQuery->the_post();        
         echo '<a href="'.get_page_link().'">'.get_the_title().'</a><br>';
+        
+        if ( has_post_thumbnail() ) {
+          // get featured page image in thumbnail size
+          $post = get_post( $post );
+          echo get_the_post_thumbnail($post->ID, 'thumbnail');
+        } 
+
+
 	    endwhile; 
     endif; 
 
