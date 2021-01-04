@@ -53,7 +53,6 @@ if ( ! function_exists( 'unsere_schule_setup' ) ) :
 				'menu-1' => esc_html__( 'Primary', 'unsere-schule' ),
 			)
 		);
-
 				
 		/*
 		 * Switch default core markup for search form, comment form, and comments
@@ -274,17 +273,22 @@ function getPageCode($tempPostID){
 // [wpus_childpages]
 function listChildPages() { 
 	global $post; 
+	$postStatusArray = array('publish');
 	
+	if(is_user_logged_in()){
+		array_push($postStatusArray, 'private');
+	}
+
 	$childpages = wp_list_pages( array(
 		'title_li'    => '',
 		'echo'		=> false,
 		'child_of'    => $post->ID,
 		'sort_column' => 'menu_order',
 		'sort_order' => 'ASC',
-		'post_status' => array( 'publish', 'private' )
+		'post_status' => $postStatusArray
 	) );
 	if($childpages) return '<ul class="wpb_page_list">' . $childpages . '</ul>';
-	else return "";	
+	else return "Leider sind keine Seiten vorhanden.";	
 }
 // [wpus_loadImage image="something.jpg"]
 function loadImage($atts){
@@ -426,3 +430,14 @@ function my_next_post_sort() {
 // überschreibt "get_next_post_sort"
 add_filter( 'get_next_post_sort', 'my_next_post_sort' );
 
+
+// wählt verschiedene Navigationsmenüs aus, je nachdem ob der Nutzer angemeldet ist oder nicht
+function wpc_wp_nav_menu_args( $args = '' ) {
+if( is_user_logged_in()) { 	
+	$args['menu'] = 'Admin';	
+} else { 	
+	$args['menu'] = 'Normal';	
+} 
+	return $args;
+}
+add_filter( 'wp_nav_menu_args', 'wpc_wp_nav_menu_args' );
