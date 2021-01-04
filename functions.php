@@ -372,24 +372,27 @@ function start_us_pagination($pages, $range)
 			$pages = 1;
 		}
 	}
-	if(1 != $pages){
-		echo "<nav aria-label='Page navigation'>  <ul class='pagination'> <span>Page ".$paged." of ".$pages."</span>";
+	if(1 != $pages){ /* <span>Page ".$paged." of ".$pages."</span> */
+		echo "<div class='us-pagination-center'><div class='us-pagination'>";
 		// First button
 		if($paged > $range+1) echo "<a href='".get_pagenum_link(1)."'>First</a>";
 		// Previous button
-		if($paged > 1) echo "<a href='".get_pagenum_link($paged - 1)."'>Previous</a>";
+		if($paged > 1) echo "<a href='".get_pagenum_link($paged - 1)."'>&laquo;</a>";
 		for ($i=1; $i <= $pages; $i++)		{
 			// pages 1 - n
 			if (1 != $pages &&( !($i >= $paged+$range+1 || $i <= $paged-$range-1) )){
-				echo ($paged == $i)? "<li class=\"page-item active\"><a class='page-link'>".$i."</a></li>":"<li class='page-item'> <a href='".get_pagenum_link($i)."' class=\"page-link\">".$i."</a></li>";
+				echo ($paged == $i)? "<a class='active'>".$i."</a>" : "<a href='".get_pagenum_link($i)."'>".$i."</a>";
 			}
 		}
 		// Next button
-		if ($paged < $pages ) echo " <li class='page-item'><a class='page-link' href=\"".get_pagenum_link($paged + 1)."\">Next</a></li>";
+		if ($paged < $pages ) echo " <a href=\"".get_pagenum_link($paged + 1)."\">&raquo;</a>";
 		// Last button
-		if ($paged + $range < $pages ) echo " <li class='page-item'><a class='page-link' href='".get_pagenum_link($pages)."'>Last</a></li>";
-		echo "</ul></nav>\n";
+		if ($paged + $range < $pages ) echo " <a class='page-link' href='".get_pagenum_link($pages)."'>Last</a>";
+		echo "</div></div>";
 	}
+
+
+
 }
 		
 /**

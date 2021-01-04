@@ -16,10 +16,6 @@
 <!-- Page Content -->
 <div id="content">
 	<div id="overlay"> </div>
-	
-	<div class="breadcrumb">
-		<?php echo get_breadcrumb(get_post()->ID); ?>
-	</div>
 
 	<main id="primary" class="site-main">
   
@@ -35,33 +31,42 @@
 
     $args = array(
       'post_type' => 'page',
-      'post__not_in' => array(9,636),
-      'posts_per_page' => 10,
+      'post__not_in' => array(9,636,828),
+      'posts_per_page' => 12,
       'paged' => $paged
     );
 
     $customQuery = new WP_Query($args);
     if($customQuery->have_posts() ): 
       echo '<br>';
+      echo '<div class="us-grid">';
       while($customQuery->have_posts()) :
         //display post
         $customQuery->the_post();        
-        echo '<a href="'.get_page_link().'">'.get_the_title().'</a><br>';
-        
+        //echo '<li>';        
+        echo '<a href="'.get_page_link().'">';
+                      
+        echo '<div class="image-wrap">';
         if ( has_post_thumbnail() ) {
           // get featured page image in thumbnail size
           $post = get_post( $post );
           echo get_the_post_thumbnail($post->ID, 'thumbnail');
         } 
+        echo '</div>';
+        echo '<h4 class="us-grid-title">'.get_the_title().'</h4>';        
+        echo '</a>';
 
 
-	    endwhile; 
+
+        
+      endwhile; 
+      echo '</div>';
     endif; 
 
     wp_reset_query();
 
     if (function_exists("start_us_pagination")) {
-		start_us_pagination($customQuery->max_num_pages, 3); 
+		  start_us_pagination($customQuery->max_num_pages, 3); 
     }
 
 	?>
