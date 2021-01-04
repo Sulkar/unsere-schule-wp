@@ -75,4 +75,4 @@
 
 </div> <!-- content -->
 
-<?php get_footer('simple'); ?>
+<?php get_footer('simple-home'); ?>

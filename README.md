@@ -1,5 +1,7 @@
 ## Simple Wordpress theme built on top of the developer theme: _underscore
 
+![info](images/us4.png)
+
 ![info](images/us3.png)
 
 ![info](images/us2.png)
