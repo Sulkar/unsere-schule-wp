@@ -56,12 +56,20 @@ jQuery(document).ready(function () {
 
     btnToTop = document.getElementById("btnToTop");
     function scrollFunction() {
-        if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-            btnToTop.style.display = "block";
-        } else {
-            btnToTop.style.display = "none";
+        if(btnToTop != null){
+            if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+                btnToTop.style.display = "block";
+            } else {
+                btnToTop.style.display = "none";
+            }
         }
     }
+
+    // button - link: toogle Adminbar    
+    jQuery('#toggleAdminbar').on('click', function (event) {
+        event.preventDefault();
+        jQuery("#wpadminbar").toggle();
+    });
   
 
 });

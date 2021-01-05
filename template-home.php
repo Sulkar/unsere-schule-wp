@@ -50,8 +50,8 @@
         if ( has_post_thumbnail() ) {
           // get featured page image in thumbnail size
           $post = get_post( $post );
-          echo get_the_post_thumbnail($post->ID, 'thumbnail');
-        } 
+          echo get_the_post_thumbnail($post->ID, 'medium');
+        }
         echo '</div>';
         echo '<h4 class="us-grid-title">'.get_the_title().'</h4>';        
         echo '</a>';
