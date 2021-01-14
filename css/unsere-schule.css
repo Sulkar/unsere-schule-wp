@@ -41,10 +41,11 @@ ul, ol {
 }
 
 p {
-    font-size: 1.1rem;
-    font-weight: 300;
-    line-height: 1.7em;
-    
+    color: #555;
+    font-family: sofia-pro, Arial, sans-serif;
+    font-size: 18px;
+    line-height: 30px;
+    letter-spacing: 0.005em;
 }
 
 
@@ -106,7 +107,7 @@ p {
 .code-badge {
     font-size: 1rem;
     border-radius: 10px;
-    background: #f17171;
+    background: tomato;
     color: white;
     padding-right: 5px;
     padding-left: 5px;
@@ -116,6 +117,9 @@ p {
     vertical-align: middle;
 }
 
+.wp-block-file .wp-block-file__button{ /* Gutenberg Editor Download Block */
+    background: #a2d471;
+}
 /* ---------------------------------------------------
     header navigation
 ----------------------------------------------------- */
@@ -128,7 +132,7 @@ p {
     left: 0;
     height: 3rem;
     width: 100%;
-    background-color: #f17171; 
+    background-color: tomato; 
     z-index: 12;
 }
 .navbar-logo{

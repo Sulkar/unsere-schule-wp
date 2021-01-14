@@ -31,7 +31,19 @@
 
     $args = array(
       'post_type' => 'page',
-      'post__not_in' => array(9,636,828),
+      'meta_query' => array(
+        'relation' => 'OR',
+        array(
+            'key'     => 'list_home',
+            'value'   => '0',
+            'compare' => '!=',
+        ),
+        array(
+            'key'     => 'list_home',
+            'value'   => '0',
+            'compare' => 'NOT EXISTS',
+        ),
+      ),
       'posts_per_page' => 12,
       'paged' => $paged
     );
@@ -41,6 +53,7 @@
       echo '<br>';
       echo '<div class="us-grid">';
       while($customQuery->have_posts()) :
+        
         //display post
         $customQuery->the_post();        
         //echo '<li>';        
