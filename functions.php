@@ -271,8 +271,13 @@ function getPageCode($tempPostID){
     SHORTCODES
 ----------------------------------------------------- */
 // [wpus_childpages]
-function listChildPages() { 
+function listChildPages($atts) { 
+	$a = shortcode_atts( array(
+        'depth' => ''
+	), $atts );
+	
 	global $post; 
+	
 	$postStatusArray = array('publish');
 	
 	if(is_user_logged_in()){
@@ -283,6 +288,7 @@ function listChildPages() {
 		'title_li'    => '',
 		'echo'		=> false,
 		'child_of'    => $post->ID,
+		'depth'		  => $a['depth'],
 		'sort_column' => 'menu_order',
 		'sort_order' => 'ASC',
 		'post_status' => $postStatusArray
