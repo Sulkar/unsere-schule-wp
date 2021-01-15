@@ -94,7 +94,7 @@ p {
 #content {
     max-width: 1000px;
     margin: 0 auto;
-    padding: 4rem 2.5rem 2rem 2.5rem;
+    padding: 2rem 2.5rem 2rem 2.5rem;
     word-wrap:break-word;
 }
 
@@ -353,6 +353,9 @@ div[class="meinContainer"] .uslast{
         display: block;
     }
     
+    #content {
+        padding: 2rem 1rem 2rem 1rem;
+    }
 }
 
 
