@@ -323,10 +323,11 @@ div[class="meinContainer"] a:hover {
     background-color: #E6ECF1;
 }
 /* highlight parent element on navigation */
-.current-page-ancestor > .expandable > a{
+div[class="meinContainer"] .uslast{
     background-color: white;
     color: #D64545;
 }
+
 /* ---------------------------------------------------
     MEDIAQUERIES
 ----------------------------------------------------- */

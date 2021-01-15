@@ -154,7 +154,7 @@ function unsere_schule_scripts() {
 		'unsere-schule',
 		get_template_directory_uri() . '/css/unsere-schule.css',
 		array(),
-		'1.0.2'
+		'1.0.4'
 	);
 
 	/* Navbar JS */

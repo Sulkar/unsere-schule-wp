@@ -7,6 +7,7 @@ jQuery(document).ready(function () {
         jQuery('.current-menu-ancestor > div > .navSub').addClass('arrowDown');
     }else{
         jQuery('.current-page-ancestor > .expandable > a').parents().show();
+        jQuery('.current-page-ancestor > .expandable > a').last().addClass('uslast');
         jQuery('.current-page-ancestor').parents('ul').siblings('.expandable').children('.navSub').addClass('arrowDown');
     }
 
