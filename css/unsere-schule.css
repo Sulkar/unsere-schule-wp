@@ -1,8 +1,14 @@
 /* ---------------------------------------------------
     Background STYLE
 ----------------------------------------------------- */
+
 body {
     background: white;
+    font-family: sofia-pro, Arial, sans-serif;
+    color: #555;
+    font-size: 18px;
+    line-height: 30px;
+    letter-spacing: 0.005em;
 }
 
 body::before {
@@ -37,18 +43,44 @@ body.noscroll{
 
 ul, ol {
     margin-left: 0px;
-    font-size: 1.1rem;
 }
 
 p {
-    color: #555;
-    font-family: sofia-pro, Arial, sans-serif;
-    font-size: 18px;
-    line-height: 30px;
-    letter-spacing: 0.005em;
+    
 }
 
+a,
+a:visited {
+    color: tomato;
+    /*font-family: 'liberation_monoregular', monospace;*/
+}
+a:hover {
+    text-decoration: none;
+}
 
+/*
+    SCROLLBAR
+*/
+/* width */
+#sidebar::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  #sidebar::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  #sidebar::-webkit-scrollbar-thumb {
+    background: #C1C1C1; 
+  }
+  
+  /* Handle on hover */
+  #sidebar::-webkit-scrollbar-thumb:hover {
+    background: #888; 
+  }
+  
 /* ---------------------------------------------------
     SIDEBAR STYLE
 ----------------------------------------------------- */
@@ -66,7 +98,7 @@ p {
     color: #3884FE;
     transition: all 0.3s;
     position: fixed;
-    top: 3em;
+    top: 3rem;
     left: 0;
     bottom: 0;
     overflow-y: auto;
@@ -94,7 +126,7 @@ p {
 #content {
     max-width: 1000px;
     margin: 0 auto;
-    padding: 2rem 2.5rem 2rem 2.5rem;
+    padding: 4rem 2.5rem 2rem 2.5rem;
     word-wrap:break-word;
 }
 
@@ -223,8 +255,9 @@ p {
     cursor: pointer;
     display: none;
 }
+
 /* ---------------------------------------------------
-    tables
+    GUTENBERG EDITOR - tables, center video, 
 ----------------------------------------------------- */
 .myTable table {
     border-collapse: collapse;
@@ -241,6 +274,34 @@ p {
     background-color: #dddddd;
 }
 
+/* custom Gutenberg table style: us-table  */
+.wp-block-table.us-table{
+    text-align: center;
+    border: 1px solid #eaeaea;
+    
+}
+.wp-block-table.us-table table{
+    border-collapse: collapse;
+    border-spacing: 0;
+    overflow: hidden;
+}
+.wp-block-table.us-table td{
+    border: 1px solid #eaeaea;
+    vertical-align: top;
+    padding: 0.5rem;
+}
+
+/* center iframes */
+.wp-block-embed__wrapper {
+    text-align: center;
+}
+
+/* Bildunterschriften */
+.wp-block-image figcaption {
+    font-size: 14px;
+    font-style: italic;
+    text-align: center;
+}
   
 /* ---------------------------------------------------
     sidebar navigation
@@ -329,37 +390,6 @@ div[class="meinContainer"] .uslast{
 }
 
 /* ---------------------------------------------------
-    MEDIAQUERIES
------------------------------------------------------ */
-
-@media screen and (max-width: 768px) {
-    #page {
-        padding-left: 0px;
-    }
-    #sidebar {
-        margin-left: -250px;
-    }
-    #sidebar.active {
-        margin-left: 0;
-    }
-    #btn-sidebar-collapse {
-        display: inline-block;
-    }
-
-    .navbar-logo{
-        display: none;     
-    }
-    .navbar-toggle{ 
-        display: block;
-    }
-    
-    #content {
-        padding: 2rem 1rem 2rem 1rem;
-    }
-}
-
-
-/* ---------------------------------------------------
     START / HOME PAGE
 ----------------------------------------------------- */
 .us-grid{
@@ -372,7 +402,12 @@ div[class="meinContainer"] .uslast{
 .us-grid .image-wrap{
     text-align: center;
 }
-
+.us-grid img{
+    /*height: 12vw;
+    object-fit: contain;*/
+    height: 150px;
+    object-fit: cover;
+}
 .us-grid a{
     text-decoration: none;
     color: #242A31;
@@ -417,3 +452,34 @@ div[class="meinContainer"] .uslast{
   .icon-schoolred {
     width: 1.25em;
   }
+
+  /* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+
+@media screen and (max-width: 768px) {
+    #page {
+        padding-left: 0px;
+    }
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+    #btn-sidebar-collapse {
+        display: inline-block;
+    }
+
+    .navbar-logo{
+        display: none;     
+    }
+    .navbar-toggle{ 
+        display: block;
+    }
+    
+    #content {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}

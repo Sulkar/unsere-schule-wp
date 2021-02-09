@@ -154,7 +154,7 @@ function unsere_schule_scripts() {
 		'unsere-schule',
 		get_template_directory_uri() . '/css/unsere-schule.css',
 		array(),
-		'1.0.4'
+		'1.0.11'
 	);
 
 	/* Navbar JS */
@@ -162,7 +162,7 @@ function unsere_schule_scripts() {
 		'unsere-schule-navbar',
 		get_template_directory_uri() . '/js/us-navigation.js',
 		array('jquery'),
-		'1.0.1',
+		'1.0.2',
 		true
 	);
 
@@ -370,7 +370,7 @@ function start_us_pagination($pages, $range)
 	if(1 != $pages){ /* <span>Page ".$paged." of ".$pages."</span> */
 		echo "<div class='us-pagination-center'><div class='us-pagination'>";
 		// First button
-		if($paged > $range+1) echo "<a href='".get_pagenum_link(1)."'>First</a>";
+		if($paged > $range+1) echo "<a href='".get_pagenum_link(1)."'>1</a>";
 		// Previous button
 		if($paged > 1) echo "<a href='".get_pagenum_link($paged - 1)."'>&laquo;</a>";
 		for ($i=1; $i <= $pages; $i++)		{
@@ -382,7 +382,7 @@ function start_us_pagination($pages, $range)
 		// Next button
 		if ($paged < $pages ) echo " <a href=\"".get_pagenum_link($paged + 1)."\">&raquo;</a>";
 		// Last button
-		if ($paged + $range < $pages ) echo " <a class='page-link' href='".get_pagenum_link($pages)."'>Last</a>";
+		if ($paged + $range < $pages ) echo " <a class='page-link' href='".get_pagenum_link($pages)."'>".$pages."</a>";
 		echo "</div></div>";
 	}
 

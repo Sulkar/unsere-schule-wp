@@ -68,9 +68,17 @@ jQuery(document).ready(function () {
 
     // button - link: toogle Adminbar    
     jQuery('#toggleAdminbar').on('click', function (event) {
-        event.preventDefault();
+        event.preventDefault();        
         jQuery("#wpadminbar").toggle();
+        if(localStorage.getItem("adminShow") == "true"){
+            localStorage.setItem("adminShow", "false");
+        }else{
+            localStorage.setItem("adminShow", "true");
+        }
     });
+    if(localStorage.getItem("adminShow") == "false"){
+        jQuery("#wpadminbar").hide();
+    }
   
 
 });

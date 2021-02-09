@@ -39,11 +39,13 @@
 
     $customQuery = new WP_Query($args);
     if($customQuery->have_posts() ): 
-      echo '<figure class="myTable"><table><tr><th style="text-align:center;">Page Code</th><th>Titel der Seite</th></tr>';
+      echo '<figure class="myTable"><table><tr><th style="text-align:center;">Nr.</th><th style="text-align:center;">Page Code</th><th>Titel der Seite</th></tr>';
+      $nr = 0;
       while($customQuery->have_posts()) :
+        $nr++;
         $customQuery->the_post();
         $pageCode = getPageCode(get_the_ID());
-        echo '<tr><td style="text-align:center;">'.$pageCode.'</td><td><a href="'.get_page_link().'">'.get_the_title().'</a></td></tr>';
+        echo '<tr><td style="text-align:center;">'.$nr.'</td><td style="text-align:center;">'.$pageCode.'</td><td><a href="'.get_page_link().'">'.get_the_title().'</a></td></tr>';
       endwhile; 
       echo '</table></figure>';
     endif; 
