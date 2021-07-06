@@ -297,11 +297,14 @@ a:hover {
 }
 
 /* Bildunterschriften */
-.wp-block-image figcaption {
+.wp-block-image figcaption,
+.wp-block-gallery figcaption
+ {
     font-size: 14px;
     font-style: italic;
     text-align: center;
 }
+
   
 /* ---------------------------------------------------
     sidebar navigation
