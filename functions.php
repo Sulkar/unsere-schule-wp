@@ -432,3 +432,30 @@ if( is_user_logged_in()) {
 	return $args;
 }
 add_filter( 'wp_nav_menu_args', 'wpc_wp_nav_menu_args' );
+
+
+// Add a custom user role
+remove_role( 'client' );
+remove_role( 'myEditor' );
+
+$result = add_role( 'myEditor', __(
+
+	'MyEditor' ),
+	
+	array(
+	
+	'read' => true, 
+	'edit_posts' => false, 
+	'edit_pages' => true, 
+	'create_pages' => false, 
+	'publish_pages' => true, 
+	'create_posts' => false, 
+	'manage_categories' => false, 
+	'publish_posts' => false, 
+	'edit_themes' => false, 
+	'install_plugins' => false, 
+	'update_plugin' => false, 
+	'update_core' => false 
+	
+	)
+);
