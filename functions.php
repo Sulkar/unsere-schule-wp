@@ -320,6 +320,12 @@ function loadIcon($atts = [], $content = null, $tag = ''){
 function zeigeUeberschrift( $atts, $content = null ) {
 	return '<h1>'.$content.'</h1>';
 }
+// [wpus_shortcode_generator]
+function erstelleShortcodeGenerator() {
+	ob_start();
+	get_template_part( 'template-parts/content', 'shortcode' );
+	return ob_get_clean();
+}
 
 // Central location to create all shortcodes.
 function us_shortcodes_init() {
@@ -327,6 +333,7 @@ function us_shortcodes_init() {
 	add_shortcode( 'us_loadImage', 'loadImage');
 	add_shortcode( 'us_loadIcon', 'loadIcon');
 	add_shortcode( 'us_zeigeUeberschrift', 'zeigeUeberschrift');
+	add_shortcode( 'wpus_shortcode_generator', 'erstelleShortcodeGenerator');
 }
 add_action( 'init', 'us_shortcodes_init' );
 
@@ -341,15 +348,20 @@ add_action( 'admin_post_nopriv_redirectByCode', 'redirectToPageByCode' );
  */
 function redirectToPageByCode(){
 	$tempCode = (isset($_POST['search'])) ?sanitize_text_field($_POST['search']) : false;
-	$postID = getPostIdByMetaKeyAndValue('page_code', $tempCode);	
-
-	if($postID){
-		$tempUrl = home_url() . '/?p=' . $postID;
-		wp_redirect( $tempUrl );
-		exit;	
-	}else{
-		wp_redirect( home_url() . '/sitemap/' ); //redirect to sitemap, if no code is found
+	//check if it´s an internal (numbers) or external (e + numbers)		
+	if(preg_match('/[A-Za-z]/', $tempCode) == 1){		
+		wp_redirect('https://website.de/' . $tempCode);
 		exit;
+	}else{
+		$postID = getPostIdByMetaKeyAndValue('page_code', $tempCode);
+		if($postID){
+			$tempUrl = home_url() . '/?p=' . $postID;
+			wp_redirect( $tempUrl );
+			exit;	
+		}else{
+			wp_redirect( home_url() . '/sitemap/' ); //redirect to sitemap, if no code is found
+			exit;
+		}
 	}
 }
 
@@ -433,29 +445,3 @@ if( is_user_logged_in()) {
 }
 add_filter( 'wp_nav_menu_args', 'wpc_wp_nav_menu_args' );
 
-
-// Add a custom user role
-remove_role( 'client' );
-remove_role( 'myEditor' );
-
-$result = add_role( 'myEditor', __(
-
-	'MyEditor' ),
-	
-	array(
-	
-	'read' => true, 
-	'edit_posts' => false, 
-	'edit_pages' => true, 
-	'create_pages' => false, 
-	'publish_pages' => true, 
-	'create_posts' => false, 
-	'manage_categories' => false, 
-	'publish_posts' => false, 
-	'edit_themes' => false, 
-	'install_plugins' => false, 
-	'update_plugin' => false, 
-	'update_core' => false 
-	
-	)
-);

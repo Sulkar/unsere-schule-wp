@@ -20,7 +20,7 @@
 
 	<form method="POST" id="myRedirectForm" action="<?php echo home_url() . '/wp-admin/admin-post.php' ?>" class="">
 		<div class="searchbox">
-			<input id="tempCode" name="search" type="number" placeholder="Code..." onKeyPress="if(this.value.length==8) return false;" />
+			<input id="tempCode" name="search"  placeholder="Code..." onKeyPress="if(this.value.length==8) return false;" autocomplete="off" />
 			<input type="hidden" name="action" value="redirectByCode" />
 			<span id="searchBtn">			
 				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#F7F7EF" class="bi bi-search" viewBox="0 0 16 16">
