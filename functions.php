@@ -189,6 +189,14 @@ function unsere_schule_scripts() {
 		'1.0.0',
 		true
 	);
+	/* QRCode.js syntax highlight JS */
+	wp_enqueue_script( 
+		'qrcode-js',
+		get_template_directory_uri() . '/js/qrcode.js',
+		array(),
+		'1.0.1',
+		true
+	);
 	
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
@@ -353,7 +361,7 @@ function redirectToPageByCode(){
 		wp_redirect('https://website.de/' . $tempCode);
 		exit;
 	}else{
-		$postID = getPostIdByMetaKeyAndValue('page_code', $tempCode);
+		$postID = getPostIdByMetaKeyAndValue('page_code', $tempCode); 
 		if($postID){
 			$tempUrl = home_url() . '/?p=' . $postID;
 			wp_redirect( $tempUrl );

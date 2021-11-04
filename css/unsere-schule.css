@@ -194,6 +194,7 @@ a:hover {
 /* ---------------------------------------------------
     search box
 ----------------------------------------------------- */
+
 .searchbox {
     border: 0px;
     position: relative;
@@ -268,6 +269,11 @@ a:hover {
     border: 1px solid #dddddd;
     text-align: left;
     padding: 5px;
+}
+
+.myTableMinW td,
+.myTableMinW th {
+	min-width: 5em;
 }
   
 .grey-stripes tr:nth-child(even) {
@@ -455,6 +461,76 @@ div[class="meinContainer"] .uslast{
   .icon-schoolred {
     width: 1.25em;
   }
+  
+/* ---------------------------------------------------
+    code modal style
+----------------------------------------------------- */
+
+/* modal title */
+#code-modal-title{
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+#code-modal-header{
+	border-radius: 20px 20px 0 0;
+	background-color: tomato;
+	display: inline-flex;
+	align-self: center;
+	padding-left: 1em;
+	width: 100%;
+}
+#code-modal-url{
+	color: white;
+	margin-left: 0.4em; 
+	margin-top: 1.2em;
+}
+#code-modal-qrcode,
+#code-qrcode
+{
+	padding-top: 1em;
+	padding-bottom: 1em;
+	width: 30%;
+}
+
+/* The Modal (background) */
+.code-modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 100; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.code-modal-content {
+	border-radius: 20px;
+	background-color: #fefefe;
+	margin: 5% auto;
+	padding: 0px;
+	width: 80%;
+}
+
+/* The Close Button */
+.code-close {
+	color: white;
+	margin-left: auto;
+	font-size: 40px;
+	font-weight: bold;
+	margin-right: 0.3em;
+	margin-top: 0.3em;
+}
+
+.code-close:hover,
+.code-close:focus {
+  color: white;
+  text-decoration: none;
+  cursor: pointer;
+}
 
   /* ---------------------------------------------------
     MEDIAQUERIES
@@ -485,4 +561,27 @@ div[class="meinContainer"] .uslast{
         padding-left: 1rem;
         padding-right: 1rem;
     }
+	
+	/* modal title */
+	#code-modal-header{
+		padding-top: 0.5em;
+		padding-bottom: 0.5em;		
+	}
+	.code-close {
+		color: white;
+		float: right;
+		font-size: 40px;
+		font-weight: bold;
+		margin-right: 0.3em;
+		margin-top: 0.3em;
+	}
+	#code-modal-url{
+		margin-left: 0em; 
+		margin-top: 0em;
+		margin-bottom: 0em;
+	}
+	#code-modal-qrcode,
+	#code-qrcode{
+		width: 70%;
+	}
 }
