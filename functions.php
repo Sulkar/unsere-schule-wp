@@ -189,7 +189,7 @@ function unsere_schule_scripts() {
 		'1.0.0',
 		true
 	);
-	/* QRCode.js syntax highlight JS */
+	/* QRCode.js JS */
 	wp_enqueue_script( 
 		'qrcode-js',
 		get_template_directory_uri() . '/js/qrcode.js',
@@ -274,6 +274,33 @@ function getPageCode($tempPostID){
 		return "";
 	}
 }
+
+
+/**
+ * check url for template: content-shortcode.php 
+ */
+function checkUrl($url){
+	//1) add https if missing
+	$scheme = parse_url($url, PHP_URL_SCHEME);
+	if (empty($scheme)) {
+		$url = 'https://' . ltrim($url, '/');
+	}
+	//2) check if host exists and has domain
+	$host = parse_url($url, PHP_URL_HOST);
+	$hostWithoutWWW = str_replace('www.', '', $host);
+	if(sizeof(explode('.', $hostWithoutWWW)) < 2){
+		return NULL;
+	}
+	//3) remove all illegal characters from a url
+	$url = filter_var($url, FILTER_SANITIZE_URL);
+	
+	//4) final test
+	if (filter_var($url, FILTER_VALIDATE_URL)) {
+		return $url;
+	}else{
+		return NULL;
+	}
+}	
 		
 /* ---------------------------------------------------
     SHORTCODES

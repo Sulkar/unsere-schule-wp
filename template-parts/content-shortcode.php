@@ -18,31 +18,7 @@
 	</form>
 		
 	<?php		
-		$code_url = '';
-		
-		//function: check url
-		function checkUrl($url){
-			//1) add https if missing
-			$scheme = parse_url($url, PHP_URL_SCHEME);
-			if (empty($scheme)) {
-				$url = 'https://' . ltrim($url, '/');
-			}
-			//2) check if host exists and has domain
-			$host = parse_url($url, PHP_URL_HOST);
-			$hostWithoutWWW = str_replace('www.', '', $host);
-			if(sizeof(explode('.', $hostWithoutWWW)) < 2){
-				return NULL;
-			}
-			//3) remove all illegal characters from a url
-			$url = filter_var($url, FILTER_SANITIZE_URL);
-			
-			//4) final test
-			if (filter_var($url, FILTER_VALIDATE_URL)) {
-				return $url;
-			}else{
-				return NULL;
-			}
-		}	
+		$code_url = '';			
 		
 		//is short_url submitted
 		if(isset($_POST['short_url'])){

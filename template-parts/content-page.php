@@ -52,6 +52,9 @@
 					<h1>Code: <?php echo $tempPageCode; ?></h1>					
 				</div>
 				<div id="code-modal-qrcode"></div>
+				<div>Infos: 
+					<a href="https://unsere-schule.org/allgemeines/tools/unsere-schule-codes/" target="_blank">unsere-schule Codes</a>
+				</div>
 			</center>
 			</div>
 		</div>
