@@ -258,8 +258,27 @@ a:hover {
 }
 
 /* ---------------------------------------------------
-    GUTENBERG EDITOR - tables, center video, 
+    GUTENBERG EDITOR - arbeitsblatt, tables, center video, 
 ----------------------------------------------------- */
+.myArbeitsblatt {
+	display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    color: tomato;
+	font-size: larger;
+}
+.myArbeitsblatt:before {
+	content: ' ';
+	background-image: url('./ab.svg');
+	background-repeat: no-repeat;
+	background-size: 80px 40px;
+	height: 40px;
+	width: 80px;
+	margin-right: 10px;
+}
+
 .myTable table {
     border-collapse: collapse;
     width: 100%;
@@ -510,7 +529,7 @@ div[class="meinContainer"] .uslast{
 .code-modal-content {
 	border-radius: 20px;
 	background-color: #fefefe;
-	margin: 5% auto;
+	margin: 1em auto;
 	padding: 0px;
 	width: 80%;
 }

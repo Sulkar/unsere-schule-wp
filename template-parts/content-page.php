@@ -13,8 +13,9 @@
 	<header class="entry-header">
 		<?php 		
 			echo '<h1 class="entry-title">';
-			echo the_title(); 
-			$tempPageCode = getPageCode(get_post()->ID);
+			echo the_title();			
+			$tempPageID = get_post()->ID;
+			$tempPageCode = getPageCode($tempPageID);
 			if($tempPageCode != ""){
 				echo ' <span class="code-badge">'.$tempPageCode.'</span>';
 				echo '<span id="showCodeModal" style="cursor:pointer; margin-left:0.2em;"><svg xmlns="http://www.w3.org/2000/svg" width="0.6em" height="0.6em" fill="currentColor" class="bi bi-arrows-fullscreen" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M5.828 10.172a.5.5 0 0 0-.707 0l-4.096 4.096V11.5a.5.5 0 0 0-1 0v3.975a.5.5 0 0 0 .5.5H4.5a.5.5 0 0 0 0-1H1.732l4.096-4.096a.5.5 0 0 0 0-.707zm4.344 0a.5.5 0 0 1 .707 0l4.096 4.096V11.5a.5.5 0 1 1 1 0v3.975a.5.5 0 0 1-.5.5H11.5a.5.5 0 0 1 0-1h2.768l-4.096-4.096a.5.5 0 0 1 0-.707zm0-4.344a.5.5 0 0 0 .707 0l4.096-4.096V4.5a.5.5 0 1 0 1 0V.525a.5.5 0 0 0-.5-.5H11.5a.5.5 0 0 0 0 1h2.768l-4.096 4.096a.5.5 0 0 0 0 .707zm-4.344 0a.5.5 0 0 1-.707 0L1.025 1.732V4.5a.5.5 0 0 1-1 0V.525a.5.5 0 0 1 .5-.5H4.5a.5.5 0 0 1 0 1H1.732l4.096 4.096a.5.5 0 0 1 0 .707z"/></svg></span>';				
@@ -88,7 +89,8 @@
 
 <?php if($tempPageCode != ""){ ?>
 	<script>
-		jQuery(document).ready(function () {		
+		jQuery(document).ready(function () {	
+		
 			var codeModal = document.getElementById("myCodeModal");
 			var codeModalClose = document.getElementById("codeClose");
 			var showCodeModal = document.getElementById("showCodeModal");
@@ -100,7 +102,9 @@
 				colorLight: "#ffffff",
 				correctLevel: QRCode.CorrectLevel.M,
 			});
-			QR_CODE.makeCode(window.location.href);
+			console.log("https://www.unsere-schule.org/?page_id=" + <?php echo($tempPageID); ?>);
+			QR_CODE.makeCode("https://www.unsere-schule.org/?page_id=" + <?php echo($tempPageID); ?>);
+			
 			
 			showCodeModal.addEventListener("click", function(){ 	
 				codeModal.style.display = "block";
