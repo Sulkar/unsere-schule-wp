@@ -102,7 +102,7 @@
 				colorLight: "#ffffff",
 				correctLevel: QRCode.CorrectLevel.M,
 			});
-			console.log("https://www.unsere-schule.org/?page_id=" + <?php echo($tempPageID); ?>);
+			<?php echo("console.log('<https://www.unsere-schule.org/?page_id=" . $tempPageID . " Code: *". $tempPageCode . "*>');"); ?>
 			QR_CODE.makeCode("https://www.unsere-schule.org/?page_id=" + <?php echo($tempPageID); ?>);
 			
 			
