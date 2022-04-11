@@ -190,6 +190,69 @@ a:hover {
     font-size: 1.2rem;
     text-decoration: none;
 }
+.us-trenner{
+	margin-left: 40px;
+	width: 0.01rem;
+	display: inline-block;
+	background-color: white;
+	position: absolute;
+    top: -0.02rem;
+    height: 3rem;
+}
+/* tools dropdown */
+.us-main-page-logo{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.us-dropbtn {	
+	display: flex;
+	align-items: center;
+  color: white;
+  cursor: pointer;
+}
+
+.us-dropdown-arrow{
+	margin-left: 5px;
+	color: white;
+}
+.us-dropdown {
+	margin-left: 48px;
+  position: relative;
+  display: inline-block;
+}
+.us-dropdown-content {
+	font-size: 1rem;
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 0.375rem;
+}
+.us-dropdown-content a {
+  color: #242A31;
+  padding: 10px;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+}
+.us-dropdown-content a svg {
+  margin-right: 5px;
+  height: 20px;
+  color: #8B98A6;
+}
+.us-dropdown-content a:hover {
+	background-color: #E6ECF1;
+	border-radius: 0.375rem;
+}
+.us-dropdown:hover .us-dropdown-arrow {
+	transform: rotate(90deg);
+}
+.us-dropdown:hover .us-dropdown-content {
+  display: block;
+  border-radius: 0.375rem;
+}
 
 /* ---------------------------------------------------
     search box
@@ -223,6 +286,7 @@ a:hover {
     padding: 0 0 0 8px;
     margin: 0;
     font-weight: 400;
+	border-radius: 4px;
 }
 .searchbox input::placeholder {
     color: #fff;
@@ -421,81 +485,6 @@ div[class="meinContainer"] .uslast{
     START / HOME PAGE
 ----------------------------------------------------- */
 
-/* tools dropdown */
-.us-main-page-logo{
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-}
-/* Style The Dropdown Button */
-.us-dropbtn {
-	text-align: left;
-	width: 120px;
-	margin-top: 5px;
-  background-color: #F5F7F9;
-  color: #242A31;
-  padding: 10px;
-  cursor: pointer;
-  border-radius: 0.375rem;
-  border-width: 1px;
-}
-
-.us-dropdown-arrow{
-	color: #8B98A6;
-	float: right;
-}
-
-/* The container <div> - needed to position the dropdown content */
-.us-dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-/* Dropdown Content (Hidden by Default) */
-.us-dropdown-content {
-	font-size: 1rem;
-  display: none;
-  position: absolute;
-  background-color: #f9f9f9;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-  border-radius: 0.375rem;
-}
-
-/* Links inside the dropdown */
-.us-dropdown-content a {
-  color: #242A31;
-  padding: 10px;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-}
-/* Links inside the dropdown */
-.us-dropdown-content a svg {
-  margin-right: 5px;
-  height: 20px;
-  color: #8B98A6;
-}
-
-
-/* Change color of dropdown links on hover */
-.us-dropdown-content a:hover {
-	background-color: #E6ECF1;
-}
-
-.us-dropdown:hover .us-dropdown-arrow {
-	transform: rotate(90deg);
-}
-/* Show the dropdown menu on hover */
-.us-dropdown:hover .us-dropdown-content {
-  display: block;
-}
-
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.us-dropdown:hover .us-dropbtn {
-  background-color: #E6ECF1;
-}
-
 /* Grid for blogposts */
 .us-grid{
     padding-left: 0;
@@ -523,7 +512,11 @@ div[class="meinContainer"] .uslast{
     margin: 0;
     padding: 0 20px 10px;
 }
-
+.us-pagination {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
 .us-pagination-center {
     margin-top: 20px;
     text-align: center;
@@ -534,7 +527,7 @@ div[class="meinContainer"] .uslast{
     text-decoration: none;
     transition: background-color .3s;
     border: 1px solid #ddd;
-    margin: 0 4px;
+    margin: 4px 4px;
 }
 .us-pagination a.active {
     background-color: #a2d471;
@@ -652,6 +645,13 @@ div[class="meinContainer"] .uslast{
     .navbar-toggle{ 
         display: block;
     }
+	
+	.us-dropdown{
+		display: none;
+	}
+	.us-trenner{
+		display: none;
+	}
     
     #content {
         padding-left: 1rem;
