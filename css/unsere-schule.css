@@ -648,13 +648,6 @@ div[class="meinContainer"] .uslast{
         display: block;
     }
 	
-	.us-dropdown{
-		display: none;
-	}
-	.us-trenner{
-		display: none;
-	}
-    
     #content {
         padding-left: 1rem;
         padding-right: 1rem;
@@ -681,5 +674,14 @@ div[class="meinContainer"] .uslast{
 	#code-modal-qrcode,
 	#code-qrcode{
 		width: 70%;
+	}
+}
+
+@media screen and (max-width: 600px) {
+	.us-dropdown{
+		display: none;
+	}
+	.us-trenner{
+		display: none;
 	}
 }
