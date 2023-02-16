@@ -308,7 +308,7 @@ function checkUrl($url){
 // [wpus_childpages]
 function listChildPages($atts) { 
 	$a = shortcode_atts( array(
-        'depth' => ''
+        'depth' => '0'
 	), $atts );
 	
 	global $post; 
