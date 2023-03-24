@@ -52,12 +52,12 @@
 				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 15 16" fill="currentColor"><g><g><path d="M3,0H13a2,2,0,0,1,2,2V14a2,2,0,0,1-2,2H3a2,2,0,0,1-2-2V13H2v1a1,1,0,0,0,1,1H13a1,1,0,0,0,1-1V2a1,1,0,0,0-1-1H3A1,1,0,0,0,2,2V3H1V2A2,2,0,0,1,3,0Z"/><path d="M1,5V4.5a.5.5,0,0,1,1,0V5h.5a.5.5,0,0,1,0,1H.5a.5.5,0,0,1,0-1ZM1,8V7.5a.5.5,0,0,1,1,0V8h.5a.5.5,0,0,1,0,1H.5a.5.5,0,0,1,0-1Zm0,3v-.5a.5.5,0,0,1,1,0V11h.5a.5.5,0,0,1,0,1H.5a.5.5,0,0,1,0-1Z"/><path d="M6.4,5.81V7.1H7.57v.63H6.4v2.44c0,.56.16.88.61.88A1.7,1.7,0,0,0,7.49,11l0,.62a2.15,2.15,0,0,1-.73.11,1.14,1.14,0,0,1-.89-.35,1.67,1.67,0,0,1-.32-1.17V7.73h-.7V7.1h.7V6Z"/><path d="M9,11.64c0-.25,0-.62,0-1V6.28h.66V8.57h0A1.39,1.39,0,0,1,10.9,7.9c.9,0,1.54.76,1.54,1.87a1.74,1.74,0,0,1-1.64,2A1.28,1.28,0,0,1,9.58,11h0l0,.61Zm.69-1.47a.88.88,0,0,0,0,.24,1,1,0,0,0,1,.78c.7,0,1.11-.56,1.11-1.4s-.37-1.36-1.08-1.36a1,1,0,0,0-1,.82,1,1,0,0,0,0,.27Z"/></g></g></svg>
 				telegraph-buddy
 			</a>
-			<a href="https://www.sharedrop.io/" target="_blank" rel="noopener" class="nobr">				
+			<a href="https://unsere-schule.org/programmieren/schuelerapps/" rel="noopener" class="nobr">				
 				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-file-earmark-bar-graph" viewBox="0 0 16 16">
 				<path d="M10 13.5a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-6a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v6zm-2.5.5a.5.5 0 0 1-.5-.5v-4a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v4a.5.5 0 0 1-.5.5h-1zm-3 0a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.5.5h-1z"/>
 				<path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
 				</svg>
-				ShareDrop.io
+				Schülerapps
 			</a>
 			<a href="https://unsere-schule.org/allgemeines/tools/" target="" rel="noopener">				
 				...
