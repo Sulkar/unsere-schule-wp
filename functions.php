@@ -154,7 +154,7 @@ function unsere_schule_scripts() {
 		'unsere-schule',
 		get_template_directory_uri() . '/css/unsere-schule.css',
 		array(),
-		'1.0.11'
+		'1.0.13'
 	);
 
 	/* Navbar JS */
@@ -381,11 +381,11 @@ add_action( 'admin_post_nopriv_redirectByCode', 'redirectToPageByCode' );
 /**
  * function called by search input action
  */
-function redirectToPageByCode(){
-	$tempCode = (isset($_POST['search'])) ?sanitize_text_field($_POST['search']) : false;
+function redirectToPageByCode(){	
+	$tempCode = (isset($_REQUEST['search'])) ?sanitize_text_field($_REQUEST['search']) : false;
 	//check if it´s an internal (numbers) or external (e + numbers)		
 	if(preg_match('/[A-Za-z]/', $tempCode) == 1){		
-		wp_redirect('https://website.de/' . $tempCode);
+		wp_redirect('https://uschule.de/' . $tempCode);
 		exit;
 	}else{
 		$postID = getPostIdByMetaKeyAndValue('page_code', $tempCode); 
